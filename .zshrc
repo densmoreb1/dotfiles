@@ -2,6 +2,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="vim"
 
+ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.cache/zsh/.zcompdump-${HOST}-${ZSH_VERSION}"
+
 # Docker Format
 export PS_FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
 
