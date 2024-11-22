@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 alias l="ls -lav"
 alias gs="git status"
 alias t="tree"
+alias ip='ip --color=auto'
+alias v='nvim'
 
 # Vim on CLI
 bindkey -v
