@@ -204,6 +204,6 @@ bindsym $mod+r mode "resize"
 
 
 bar {
-        status_command i3status
+        status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
 }
 
