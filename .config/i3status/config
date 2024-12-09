@@ -14,9 +14,12 @@ general {
 
 order += "battery all"
 order += "disk /"
-order += "cpu_usage"
+#order += "cpu_usage"
+order += "cpu_temperature 0"
 order += "memory"
 order += "tztime local"
+order += "volume master"
+order += "wireless _first_"
 
 battery all {
         format = "%status %percentage %remaining"
@@ -26,8 +29,12 @@ disk "/" {
         format = "%avail"
 }
 
-cpu_usage {
-        format = "%usage"
+#cpu_usage {
+#        format = "%usage"
+#}
+
+cpu_temperature 0 {
+        format = "%degrees°C"
 }
 
 memory {
@@ -38,4 +45,16 @@ memory {
 
 tztime local {
         format = "%Y-%m-%d %H:%M:%S"
+}
+
+volume master {
+   format = "♪ %volume"
+   device = "default"
+   mixer = "Master"
+   mixer_idx = 0
+}
+
+wireless _first_ {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
 }
