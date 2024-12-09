@@ -29,6 +29,16 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
+[optimus-manager]
+command=$SCRIPT_DIR/optimus-manager/optimus-manager
+interval=30
+
+[docker]
+#command=$SCRIPT_DIR/docker/docker
+color=#0db7ed
+interval=10
+LABEL=🐳 
+
 [wifi]
 label=
 command=$SCRIPT_DIR/wificustom/wifi
