@@ -29,9 +29,9 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-[optimus-manager]
-command=$SCRIPT_DIR/optimus-manager/optimus-manager
-interval=30
+[speedtest]
+command=$SCRIPT_DIR/speedtest/speedtest
+interval=300
 
 [docker]
 #command=$SCRIPT_DIR/docker/docker
@@ -68,6 +68,11 @@ interval=30
 # Battery indicator
 #
 # The battery instance defaults to 0.
+[battery]
+#command=$SCRIPT_DIR/batterybar/batterybar
+label=⚡
+interval=30
+
 [battery]
 command=$SCRIPT_DIR/battery/battery
 label=⚡

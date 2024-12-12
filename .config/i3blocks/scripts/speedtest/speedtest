@@ -23,4 +23,4 @@ DOWN=`echo $result | sed -n 2p |cut -d ':' -f2 | cut -d ' ' -f2`
 
 UP=`echo $result | sed -n 3p |cut -d ':' -f2 | cut -d ' ' -f2`
 
-echo  $PING" ms" $DOWN "MB/s" $UP "MB/s"
+echo 󰓅 $PING" ms" $DOWN "MB/s" $UP "MB/s"
