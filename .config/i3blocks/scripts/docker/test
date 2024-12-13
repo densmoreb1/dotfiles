@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if systemctl is-active --quiet docker; then
+	bash /home/brandon/dotfiles/.config/i3blocks/scripts/docker/docker
+fi
+
