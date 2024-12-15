@@ -12,5 +12,9 @@ settings:
     global: no-3rdparty
   content.cookies.store:
     global: true
+  editor.command:
+    global:
+    - nvim
+    - '{file}'
   zoom.default:
     global: 125%

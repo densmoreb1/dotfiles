@@ -25,3 +25,5 @@ alias v='nvim'
 # Vim on CLI
 bindkey -v
 
+neofetch
+
