@@ -7,14 +7,4 @@
 config_version: 2
 settings:
   colors.webpage.darkmode.enabled:
-    global: true
-  content.cookies.accept:
-    global: no-3rdparty
-  content.cookies.store:
-    global: true
-  editor.command:
-    global:
-    - nvim
-    - '{file}'
-  zoom.default:
-    global: 125%
+    global: false
