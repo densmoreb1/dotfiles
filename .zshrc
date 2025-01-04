@@ -13,6 +13,8 @@ ZSH_THEME="agnoster"
 # Plugins
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 source $ZSH/oh-my-zsh.sh
 
 # Alias

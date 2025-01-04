@@ -6,13 +6,5 @@
 
 config_version: 2
 settings:
-  colors.webpage.darkmode.enabled:
-    global: true
-  colors.webpage.darkmode.policy.images:
-    global: smart-simple
   content.javascript.clipboard:
-    https://github.com: access-paste
-  downloads.location.directory:
-    global: ~/downloads
-  zoom.default:
-    global: 125%
+    https://hub.docker.com: access-paste
