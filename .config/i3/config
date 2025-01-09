@@ -60,7 +60,7 @@ exec --no-startup-id nitrogen --restore
 
 ## Applications ##
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec alacritty
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
