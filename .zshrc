@@ -9,8 +9,8 @@ export PS_FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nImage\t{{.Image}}\nPORTS\t{{.Po
 
 # Theme
 #ZSH_THEME="random"
-ZSH_THEME="gallois"
-#ZSH_THEME="ys"
+#ZSH_THEME="gallois"
+ZSH_THEME="3den"
 
 # Plugins
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
@@ -27,4 +27,7 @@ alias v='nvim'
 
 # Vim on CLI
 bindkey -v
+
+# fzf
+source <(fzf --zsh)
 
