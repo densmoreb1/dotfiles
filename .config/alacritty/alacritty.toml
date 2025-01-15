@@ -8,9 +8,10 @@ size=8
 family = "JetbrainsMono Nerd Font"
 
 [general]
-#import = ["~/.config/alacritty/themes/themes/iterm.toml"]
+import = ["~/.config/alacritty/themes/themes/iterm.toml"]
 #import = ["~/.config/alacritty/themes/themes/one_dark.toml"]
-import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+#import = ["~/.config/alacritty/themes/themes/tokyo-night.toml"]
+#import = ["~/.config/alacritty/themes/themes/doom_one.toml"]
 
 [window]
 opacity = 1
