@@ -63,7 +63,7 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 
 # Store cookies.
 # Type: Bool
-c.content.cookies.store = False
+c.content.cookies.store = True
 
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
