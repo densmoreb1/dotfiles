@@ -28,6 +28,3 @@ alias v='nvim'
 # Vim on CLI
 bindkey -v
 
-# fzf
-source <(fzf --zsh)
-
