@@ -6,5 +6,7 @@
 
 config_version: 2
 settings:
-  content.cookies.store:
-    global: true
+  colors.webpage.darkmode.enabled:
+    global: false
+  colors.webpage.darkmode.policy.images:
+    global: smart
