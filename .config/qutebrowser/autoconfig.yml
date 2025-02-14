@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.javascript.clipboard:
-    https://pipboy.twingate.com: access-paste
+  content.geolocation:
+    https://www.fandango.com: false

@@ -1,4 +1,5 @@
 vim.cmd 'let g:netrw_liststyle = 3'
+vim.cmd 'set spell spelllang=en_us'
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -631,6 +632,9 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        json = { 'prettierd' },
+        sql = { 'sql-formatter' },
+        markdown = { 'prettierd' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
