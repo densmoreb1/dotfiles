@@ -23,7 +23,7 @@ else
 	iface="$( tail -1 /proc/net/wireless | awk '{print $1}' | sed 's/://g' )"
 fi
 
-format="  {status_or_ip} ({ssid})"
+format="  {status_or_ip} {ssid}"
 
 
 ###
