@@ -30,7 +30,7 @@ separator_block_width=15
 markup=pango
 
 [archupdate]
-# command=$SCRIPT_DIR/arch-update/arch-update
+command=$SCRIPT_DIR/arch-update/arch-update
 interval=300
 
 [speedtest]
