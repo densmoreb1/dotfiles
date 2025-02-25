@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.geolocation:
-    https://www.fandango.com: false
+  colors.webpage.darkmode.enabled:
+    global: true
