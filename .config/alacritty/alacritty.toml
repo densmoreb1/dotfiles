@@ -7,8 +7,5 @@ size=8
 [font.normal]
 family = "JetbrainsMono Nerd Font"
 
-[general]
-import = ["~/.config/alacritty/themes/themes/iterm.toml"]
-
 [window]
 opacity = 1
