@@ -222,6 +222,8 @@ return {
         -- ts_ls = {},
         --
 
+        yamlls = {},
+        pylsp = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
