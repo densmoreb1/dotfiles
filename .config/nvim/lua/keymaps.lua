@@ -35,6 +35,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
+-- Turn off LSP
+vim.keymap.set('n', '<leader>lo', '<cmd>LspStop<CR>', { desc = 'Turn [O]ff LSP' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
