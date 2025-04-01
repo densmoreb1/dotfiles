@@ -19,3 +19,5 @@ config.bind("clh", "history-clear")
 c.fonts.web.family.sans_serif = "JetbrainsMono Nerd Font"
 c.fonts.web.family.standard = "JetbrainsMono Nerd Font"
 c.fonts.web.family.fixed = "JetbrainsMono Nerd Font"
+
+c.content.tls.certificate_errors = "ask-block-thirdparty"
