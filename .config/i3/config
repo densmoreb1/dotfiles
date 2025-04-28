@@ -22,17 +22,11 @@ smart_borders on
 # Hide the mouse after some time
 exec --no-startup-id unclutter -idle 1
 
-# Caps lock to escape
-exec --no-startup-id sleep 1 && setxkbmap -option caps:escape
-
 # Network Applet
 exec --no-startup-id nm-applet
 
 # picom
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
-
-# wallpaper
-exec --no-startup-id nitrogen --restore
 
 # start a terminal
 bindsym $mod+Return exec alacritty

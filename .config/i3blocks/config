@@ -29,10 +29,6 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-[archupdate]
-command=$SCRIPT_DIR/arch-update/arch-update
-interval=300
-
 [speedtest]
 #command=$SCRIPT_DIR/speedtest/speedtest
 interval=300
