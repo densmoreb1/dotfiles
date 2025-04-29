@@ -19,6 +19,8 @@ gaps outer 5px
 default_border pixel
 smart_borders on
 
+focus_follows_mouse no
+
 # Hide the mouse after some time
 exec --no-startup-id unclutter -idle 1
 

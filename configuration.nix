@@ -99,14 +99,18 @@
     firefox
     fish
     git
+    gnupg
     lm_sensors
     neovim
     pass
     picom
+    pinentry-qt
+    preload
     python313
     qutebrowser
     starship
     stow
+    taskwarrior3
     tree
     unclutter
     vim 
