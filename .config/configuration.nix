@@ -102,6 +102,7 @@
     gnupg
     lm_sensors
     neovim
+    nodejs
     pass
     picom
     pinentry-qt
@@ -113,6 +114,7 @@
     taskwarrior3
     tree
     unclutter
+    unzip
     vim 
     wirelesstools
     wget
