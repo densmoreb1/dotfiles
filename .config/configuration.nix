@@ -25,29 +25,11 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # links /libexec from derivations to /run/current-system/sw
-  environment.pathsToLink = ["/libexec"];
-
-  # Enable the X11 windowing system.
-  services.displayManager.defaultSession = "none+i3";
+  # Enable Wayland (Hyprland runs on Wayland)
   services.xserver.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      dmenu #application launcher most people use
-      i3status # gives you the default i3 status bar
-      i3lock #default i3 screen locker
-      i3blocks #if you are planning on using i3blocks over i3status
-    ];
-  };
+  services.displayManager.defaultSession = "hyprland";
 
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "caps:escape";
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  programs.hyprland.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brandon = {
@@ -76,20 +58,20 @@
     neovim
     nodejs
     pass
-    picom
     pinentry-qt
-    preload
     python313
     qutebrowser
     starship
     stow
     taskwarrior3
     tree
-    unclutter
     unzip
     vim
     wirelesstools
     wget
+    wl-clipboard
+    wofi
+    wofi-pass
     xfce.thunar
   ];
 
@@ -108,8 +90,8 @@
   services.tlp = {
     enable = true;
     settings = {
-      START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+      START_CHARGE_THRESH_BAT0 = 79;
+      STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
 

@@ -39,7 +39,9 @@
   environment.systemPackages = with pkgs; [
     curl
     cryptsetup
+    btop
     docker
+    dust
     fish
     git
     starship
@@ -50,7 +52,6 @@
   ];
 
   # List services that you want to enable:
-
   # fish
   programs.fish.enable = true;
 
