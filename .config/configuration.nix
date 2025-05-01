@@ -50,15 +50,15 @@
     curl
     docker
     dust
-    firefox
     fish
     git
-    gnupg
+    gnupg # pass
+    hyprpaper
     lm_sensors
     neovim
-    nodejs
-    pass
-    pinentry-qt
+    nodejs # neovim
+    pass # passwords
+    pinentry-qt # pass
     python313
     qutebrowser
     starship
@@ -70,6 +70,7 @@
     wirelesstools
     wget
     wl-clipboard
+    waybar
     wofi
     wofi-pass
     xfce.thunar
