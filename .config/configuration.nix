@@ -78,6 +78,7 @@
 
   fonts.packages = with pkgs; [
     nerdfonts
+    font-awesome
   ];
 
   # List services that you want to enable:
