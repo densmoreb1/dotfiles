@@ -45,6 +45,7 @@
   environment.systemPackages = with pkgs; [
     acpi
     alacritty
+    bibata-cursors
     brightnessctl
     btop
     curl
