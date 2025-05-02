@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 34, // Waybar height (to be removed for auto height)
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
@@ -68,7 +68,7 @@
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "{used} / {avail}"
     },
     "temperature": {
         // "thermal-zone": 2,

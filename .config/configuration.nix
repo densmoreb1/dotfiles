@@ -27,9 +27,11 @@
 
   # Enable Wayland (Hyprland runs on Wayland)
   services.xserver.enable = true;
+  services.xserver.desktopManager.xterm.enable = false;
   services.displayManager.defaultSession = "hyprland";
 
   programs.hyprland.enable = true;
+  services.dbus.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brandon = {
@@ -84,7 +86,6 @@
 
   # List services that you want to enable:
   # programs
-  programs.nm-applet.enable = true;
   programs.fish.enable = true;
 
   # enable docker
