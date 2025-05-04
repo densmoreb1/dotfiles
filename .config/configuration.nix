@@ -45,7 +45,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    acpi
     alacritty
     bibata-cursors
     brightnessctl
@@ -57,13 +56,13 @@
     git
     gnupg # pass
     hyprpaper
-    lm_sensors
     neovim
     nodejs # neovim
     pass # passwords
     pinentry-qt # pass
     python313
     qutebrowser
+    ripgrep
     starship
     stow
     taskwarrior3
