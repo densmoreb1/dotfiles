@@ -25,13 +25,29 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  # List services that you want to enable:
+  # programs
   # Enable Wayland (Hyprland runs on Wayland)
   services.xserver.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.excludePackages = with pkgs; [
+    xterm
+  ];
+
+  programs.fish.enable = true;
+  programs.hyprland.enable = true;
+
   services.displayManager.defaultSession = "hyprland";
 
-  programs.hyprland.enable = true;
-  services.dbus.enable = true;
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 79;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+    };
+  };
+
+  # enable docker
+  virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brandon = {
@@ -82,21 +98,6 @@
     nerd-fonts.jetbrains-mono
     font-awesome
   ];
-
-  # List services that you want to enable:
-  # programs
-  programs.fish.enable = true;
-
-  # enable docker
-  virtualisation.docker.enable = true;
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      START_CHARGE_THRESH_BAT0 = 79;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-    };
-  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
