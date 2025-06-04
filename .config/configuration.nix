@@ -37,6 +37,8 @@
   programs.hyprland.enable = true;
 
   services.displayManager.defaultSession = "hyprland";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "brandon";
 
   services.tlp = {
     enable = true;
