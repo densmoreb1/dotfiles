@@ -14,7 +14,6 @@
     "modules-right": [
         "cpu"
         , "memory"
-        , "temperature"
         , "battery"
         , "clock"
     ],
@@ -48,12 +47,6 @@
     },
     "memory": {
         "format": "{used} / {avail}"
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format-critical": "{temperatureF}°F {icon}",
-        "format": "{temperatureF}°F {icon}",
-        "format-icons": ["", "", ""]
     },
     "backlight": {
         "format": "{percent}% {icon}",
