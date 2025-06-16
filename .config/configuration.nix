@@ -26,7 +26,6 @@
   time.timeZone = "America/New_York";
 
   # List services that you want to enable:
-  # programs
   # Enable Wayland (Hyprland runs on Wayland)
   services.xserver.enable = true;
   services.xserver.excludePackages = with pkgs; [
@@ -60,6 +59,8 @@
     ];
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -76,23 +77,25 @@
     hyprpaper
     neovim
     nodejs # neovim
+    openvpn
     pass # passwords
     pinentry-qt # pass
     python313
     qutebrowser
-    ripgrep
+    ripgrep # neovim
     starship
     stow
     taskwarrior3
     tree
+    twingate
     unzip
     vim
     wirelesstools
     wget
     wl-clipboard
     waybar
-    wofi
-    wofi-pass
+    wofi # app launcher
+    wofi-pass # pass
     xfce.thunar
   ];
 
