@@ -4,10 +4,10 @@
 
 # Basic System
 sudo pacman -S alacritty qutebrowser fish startship waybar stow 
-sudo pacman -S brightnessctl tlp fprintd hyprpaper
+sudo pacman -S brightnessctl tlp fprintd hyprpaper less man
 
 # Utils
-sudo pacman -S task neovim docker pass wl-clipboard
+sudo pacman -S task neovim docker pass wl-clipboard qflipper
 
 # Fonts
 sudo pacman -S ttf-jetbrains-mono-nerd otf-font-awesome
