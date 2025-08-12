@@ -7,7 +7,8 @@ function starship_transient_prompt_func
 end
 
 # Alias
-alias l="ls -lav"
+alias l="ls -lavh"
+alias ll="ls -lh"
 alias gs="git status"
 alias t="tree"
 alias ip='ip --color=auto'
