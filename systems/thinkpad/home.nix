@@ -22,7 +22,7 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./dots/git.nix
-    ./dots/startship.nix
+    ./packages/git.nix
+    ./packages/startship.nix
   ];
 }

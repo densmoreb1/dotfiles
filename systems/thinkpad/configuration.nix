@@ -30,7 +30,9 @@
     xterm
   ];
 
-  programs.fish.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
   programs.hyprland.enable = true;
 
   services.displayManager.defaultSession = "hyprland";
@@ -47,6 +49,8 @@
 
   # enable docker
   virtualisation.docker.enable = true;
+
+  programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brandon = {
