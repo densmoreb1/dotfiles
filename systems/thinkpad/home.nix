@@ -20,26 +20,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "Brandon Densmore";
-    userEmail = "densmoreb1@icloud.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      core.pager = "less -F -X";
-      core.editor = "nvim";
-    };
-  };
-  programs.starship = {
-    enable = true;
-    settings = {
-      git_status.ahead = "⇡\${count}";
-      git_status.diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
-      git_status.behind = "⇣\${count}";
-      git_branch.style = "bold blue";
-      python.symbol = "󰌠 ";
-      hostname.format = "[$ssh_symbol](bold blue)on [$hostname](bold red) ";
-      hostname.disabled = false;
-    };
-  };
+
+  imports = [
+    ./dots/git.nix
+    ./dots/startship.nix
+  ];
 }
