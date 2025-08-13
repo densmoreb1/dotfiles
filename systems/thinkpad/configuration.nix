@@ -30,9 +30,6 @@
     xterm
   ];
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
   programs.hyprland.enable = true;
 
   services.displayManager.defaultSession = "hyprland";
@@ -70,7 +67,7 @@
     bibata-cursors
     brightnessctl
     btop
-    cargo
+    cargo # neovim
     curl
     docker
     dust
@@ -88,7 +85,7 @@
     playwright.browsers
     qutebrowser
     ripgrep # neovim
-    rustc
+    rustc # neovim
     starship
     stow
     taskwarrior3
