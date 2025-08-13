@@ -66,6 +66,7 @@
     bibata-cursors
     brightnessctl
     btop
+    cargo
     curl
     docker
     dust
@@ -83,6 +84,7 @@
     playwright.browsers
     qutebrowser
     ripgrep # neovim
+    rustc
     starship
     stow
     taskwarrior3
