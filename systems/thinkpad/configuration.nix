@@ -24,8 +24,7 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # List services that you want to enable:
-  # Enable Wayland (Hyprland runs on Wayland)
+  # Desktop
   services.xserver.enable = true;
   services.xserver.excludePackages = with pkgs; [
     xterm
