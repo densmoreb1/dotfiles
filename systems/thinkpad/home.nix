@@ -23,7 +23,7 @@
 
   # Use dotfiles repo for now
   # all go in ~/.config
-  xdg.configFile.".taskrc".source = ../../.config/.taskrc;
+  xdg.configFile."task/taskrc".source = ../../.config/task/taskrc;
   xdg.configFile."alacritty/alacritty.toml".source = ../../.config/alacritty/alacritty.toml;
   xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
   xdg.configFile."fish/config.fish".source = ../../.config/fish/config.fish;
