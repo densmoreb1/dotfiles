@@ -83,7 +83,6 @@
     pass # passwords
     pinentry-qt # pass
     python313
-    playwright.browsers
     qutebrowser
     starship
     stow
