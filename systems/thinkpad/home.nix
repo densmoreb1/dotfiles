@@ -24,8 +24,8 @@
 
   # Converted
   imports = [
-    ./packages/git.nix
-    ./packages/startship.nix
-    ./packages/nixvim.nix
+    ../modules/git.nix
+    ../modules/startship.nix
+    ../modules/nixvim.nix
   ];
 }
