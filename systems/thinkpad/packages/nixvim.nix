@@ -64,17 +64,9 @@
         inlayHints = true;
         servers = {
           nixd.enable = true;
-          pyright = {
-            enable = true;
-            settings = {
-              python = {
-                analysis = {
-                  reportPossiblyUnboundVariable = false; # disable "variable is possibly unbound"
-                };
-              };
-            };
-          };
+          pyright.enable = true;
         };
+
         # Creates the floating dialog
         onAttach = ''
             vim.diagnostic.config {
