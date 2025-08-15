@@ -18,7 +18,16 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
   '';
 
-  # Define your hostname.
+  # Finger print scanner
+  systemd.services.fprintd = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig.Type = "simple";
+  };
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+  security.pam.services.login.fprintAuth = true;
+
   networking.hostName = "thinkpad";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -36,10 +45,6 @@
   ];
 
   programs.hyprland.enable = true;
-
-  services.displayManager.defaultSession = "hyprland";
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "brandon";
 
   services.tlp = {
     enable = true;
@@ -59,8 +64,6 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker" "dialout"]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
-    packages = with pkgs; [
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
