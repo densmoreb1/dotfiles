@@ -72,25 +72,19 @@
     bibata-cursors
     brightnessctl
     btop
-    cargo # neovim
     curl
     docker
     dust
     fish
-    gcc # neovim
     git
     gnupg # pass
     hyprpaper
-    neovim
-    nodejs # neovim
     openvpn
     pass # passwords
     pinentry-qt # pass
     python313
     playwright.browsers
     qutebrowser
-    ripgrep # neovim
-    rustc # neovim
     starship
     stow
     taskwarrior3

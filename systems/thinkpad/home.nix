@@ -39,5 +39,6 @@
   imports = [
     ./packages/git.nix
     ./packages/startship.nix
+    ./packages/nixvim.nix
   ];
 }
