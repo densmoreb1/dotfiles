@@ -1,8 +1,0 @@
-[user]
-	email = densmoreb1@icloud.com
-	name = Brandon Densmore
-[init]
-	defaultBranch = main
-[core]
-	pager = less -F -X
-	editor = nvim

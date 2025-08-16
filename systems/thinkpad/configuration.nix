@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -57,14 +52,14 @@
   # enable docker
   virtualisation.docker.enable = true;
 
-  programs.fish.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brandon = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker" "dialout"]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
