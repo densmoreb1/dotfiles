@@ -1,11 +1,12 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   home.username = "brandon";
   home.homeDirectory = "/home/brandon";
   home.stateVersion = "25.05";
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   programs.home-manager.enable = true;
 

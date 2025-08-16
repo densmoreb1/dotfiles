@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   programs.git = {
     enable = true;
     userName = "Brandon Densmore";
@@ -10,7 +6,6 @@
     extraConfig = {
       init.defaultBranch = "main";
       core.pager = "less -F -X";
-      core.editor = "nvim";
     };
   };
 }
