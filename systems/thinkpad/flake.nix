@@ -10,7 +10,7 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     home-manager,
     nixvim,
