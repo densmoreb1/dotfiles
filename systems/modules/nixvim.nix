@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     gcc
     # formatters
@@ -26,6 +22,16 @@
       {
         action = "<cmd>nohlsearch<CR>";
         key = "<Esc>";
+        mode = ["n"];
+      }
+      {
+        action = "<C-d>zz";
+        key = "<C-d>";
+        mode = ["n"];
+      }
+      {
+        action = "<C-u>zz";
+        key = "<C-u>";
         mode = ["n"];
       }
     ];
@@ -160,7 +166,7 @@
         };
       };
 
-      # pop up for keymaps
+      # pop up for key maps
       which-key.enable = true;
 
       # required for telescope
