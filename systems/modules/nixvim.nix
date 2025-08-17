@@ -2,8 +2,9 @@
   home.packages = with pkgs; [
     gcc
     # formatters
-    black
     alejandra
+    black
+    nodePackages.prettier
   ];
 
   programs.nixvim = {
@@ -67,7 +68,29 @@
     '';
 
     plugins = {
+      # status line
       lualine.enable = true;
+
+      # Completion for all lsps
+      cmp-nvim-lsp.enable = true;
+
+      # Enable git signs on the left side
+      gitsigns.enable = true;
+
+      # pop up for key maps
+      which-key.enable = true;
+
+      # required for telescope
+      web-devicons.enable = true;
+
+      markdown-preview = {
+        enable = true;
+        # Optional: auto start preview on entering markdown buffer
+        settings = {
+          auto_start = 0;
+          auto_close = 1;
+        };
+      };
 
       # lsp are install by their default package
       lsp = {
@@ -76,6 +99,7 @@
         servers = {
           nixd.enable = true;
           pyright.enable = true;
+          markdown_oxide.enable = true;
         };
 
         # Creates the floating dialog
@@ -117,6 +141,7 @@
           formatters_by_ft = {
             python = ["black"];
             nix = ["alejandra"];
+            markdown = ["prettier"];
           };
           format_on_save = {
             timeout_ms = 500;
@@ -147,12 +172,6 @@
         };
       };
 
-      # Completion for all lsp
-      cmp-nvim-lsp.enable = true;
-
-      # Enable git signs on the left side
-      gitsigns.enable = true;
-
       # Syntax, Indentation
       treesitter = {
         enable = true;
@@ -160,17 +179,12 @@
           ensure_installed = [
             "python"
             "nix"
+            "markdown"
           ];
           highlight.enable = true;
           indent.enable = true;
         };
       };
-
-      # pop up for key maps
-      which-key.enable = true;
-
-      # required for telescope
-      web-devicons.enable = true;
 
       # fuzzy finder
       telescope = {
