@@ -37,6 +37,7 @@
     fish
     git
     tree
+    sops
     starship
     unzip
     vim
