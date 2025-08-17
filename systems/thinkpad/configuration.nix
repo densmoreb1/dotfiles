@@ -23,6 +23,19 @@
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
   security.pam.services.login.fprintAuth = true;
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true; # Show battery charge of Bluetooth devices
+      };
+    };
+  };
+  services.blueman.enable = true;
+
+  # hostName
   networking.hostName = "thinkpad";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -63,8 +76,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # packages
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
