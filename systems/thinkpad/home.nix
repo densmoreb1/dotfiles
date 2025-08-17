@@ -1,6 +1,10 @@
-{...}: {
-  home.username = "brandon";
-  home.homeDirectory = "/home/brandon";
+{config, ...}: let
+  username = "brandon";
+in {
+  programs.home-manager.enable = true;
+
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.05";
 
   home.sessionVariables = {
@@ -8,30 +12,55 @@
     VISUAL = "nvim";
   };
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      "l" = "ls -lavh";
-      "ll" = "ls -lh";
-      "gs" = "git status";
-      "t" = "tree";
-      "ip" = "ip --color=auto";
-      "v" = "nvim";
+  sops = {
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    defaultSopsFile = ../modules/ssh-keys.enc.yaml;
+
+    secrets."ssh_config" = {
+      path = "/home/${username}/.ssh/config";
+      mode = "0600";
     };
-    shellInit = ''
-      function starship_transient_prompt_func
-        starship module character
-      end
-
-      set -g fish_key_bindings fish_vi_key_bindings
-      set fish_greeting
-
-      starship init fish | source
-      enable_transience
-    '';
+    secrets."github_private_key" = {
+      path = "/home/${username}/.ssh/github";
+      mode = "0600";
+    };
+    secrets."github_public_key" = {
+      path = "/home/${username}/.ssh/github.pub";
+      mode = "0600";
+    };
+    secrets."pass_private_key" = {
+      path = "/home/${username}/.ssh/pass";
+      mode = "0600";
+    };
+    secrets."pass_public_key" = {
+      path = "/home/${username}/.ssh/pass.pub";
+      mode = "0600";
+    };
+    secrets."hyprapp_private_key" = {
+      path = "/home/${username}/.ssh/hyprapp";
+      mode = "0600";
+    };
+    secrets."hyprapp_public_key" = {
+      path = "/home/${username}/.ssh/hyprapp.pub";
+      mode = "0600";
+    };
+    secrets."pipboy_private_key" = {
+      path = "/home/${username}/.ssh/pipboy";
+      mode = "0600";
+    };
+    secrets."pipboy_public_key" = {
+      path = "/home/${username}/.ssh/pipboy.pub";
+      mode = "0600";
+    };
   };
 
-  programs.home-manager.enable = true;
+  # Converted
+  imports = [
+    ../modules/fish.nix
+    ../modules/git.nix
+    ../modules/nixvim.nix
+    ../modules/startship.nix
+  ];
 
   # Use dotfiles repo for now
   # all go in ~/.config
@@ -44,11 +73,4 @@
   xdg.configFile."waybar/config".source = ../../.config/waybar/config;
   xdg.configFile."waybar/style.css".source = ../../.config/waybar/style.css;
   xdg.configFile."wofi/nord.css".source = ../../.config/wofi/nord.css;
-
-  # Converted
-  imports = [
-    ../modules/git.nix
-    ../modules/startship.nix
-    ../modules/nixvim.nix
-  ];
 }

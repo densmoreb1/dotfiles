@@ -81,19 +81,20 @@
     pass # passwords
     pinentry-qt # pass
     python313
+    qflipper
     qutebrowser
+    sops
     starship
     stow
     taskwarrior3
     tree
     twingate
     unzip
-    qflipper
     vim
-    wirelesstools
-    wget
-    wl-clipboard
     waybar
+    wget
+    wirelesstools
+    wl-clipboard
     wofi # app launcher
     wofi-pass # pass
     xfce.thunar

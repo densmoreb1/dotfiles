@@ -5,15 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     nixvim.url = "github:nix-community/nixvim";
+    sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     nixvim,
+    sops-nix,
     ...
   }: {
     nixosConfigurations = {
@@ -21,6 +24,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -29,11 +33,9 @@
               imports = [
                 ./home.nix
                 nixvim.homeModules.nixvim
+                sops-nix.homeManagerModules.sops
               ];
             };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
           }
         ];
       };
