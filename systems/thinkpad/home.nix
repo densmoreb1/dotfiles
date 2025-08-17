@@ -12,6 +12,26 @@ in {
     VISUAL = "nvim";
   };
 
+  # Converted
+  imports = [
+    ../modules/alacritty.nix
+    ../modules/fish.nix
+    ../modules/git.nix
+    ../modules/nixvim.nix
+    ../modules/startship.nix
+  ];
+
+  # Use dotfiles repo for now
+  # all go in ~/.config
+  xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
+  xdg.configFile."hypr/hyprland.conf".source = ../../.config/hypr/hyprland.conf;
+  xdg.configFile."hypr/hyprpaper.conf".source = ../../.config/hypr/hyprpaper.conf;
+  xdg.configFile."qutebrowser/config.py".source = ../../.config/qutebrowser/config.py;
+  xdg.configFile."task/taskrc".source = ../../.config/task/taskrc;
+  xdg.configFile."waybar/config".source = ../../.config/waybar/config;
+  xdg.configFile."waybar/style.css".source = ../../.config/waybar/style.css;
+  xdg.configFile."wofi/nord.css".source = ../../.config/wofi/nord.css;
+
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ../modules/ssh-keys.enc.yaml;
@@ -53,24 +73,4 @@ in {
       mode = "0600";
     };
   };
-
-  # Converted
-  imports = [
-    ../modules/fish.nix
-    ../modules/git.nix
-    ../modules/nixvim.nix
-    ../modules/startship.nix
-  ];
-
-  # Use dotfiles repo for now
-  # all go in ~/.config
-  xdg.configFile."task/taskrc".source = ../../.config/task/taskrc;
-  xdg.configFile."alacritty/alacritty.toml".source = ../../.config/alacritty/alacritty.toml;
-  xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
-  xdg.configFile."hypr/hyprland.conf".source = ../../.config/hypr/hyprland.conf;
-  xdg.configFile."hypr/hyprpaper.conf".source = ../../.config/hypr/hyprpaper.conf;
-  xdg.configFile."qutebrowser/config.py".source = ../../.config/qutebrowser/config.py;
-  xdg.configFile."waybar/config".source = ../../.config/waybar/config;
-  xdg.configFile."waybar/style.css".source = ../../.config/waybar/style.css;
-  xdg.configFile."wofi/nord.css".source = ../../.config/wofi/nord.css;
 }
