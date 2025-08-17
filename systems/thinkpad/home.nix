@@ -19,6 +19,7 @@ in {
     ../modules/git.nix
     ../modules/nixvim.nix
     ../modules/startship.nix
+    ../modules/taskwarrior.nix
   ];
 
   # Use dotfiles repo for now
@@ -27,7 +28,6 @@ in {
   xdg.configFile."hypr/hyprland.conf".source = ../../.config/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprpaper.conf".source = ../../.config/hypr/hyprpaper.conf;
   xdg.configFile."qutebrowser/config.py".source = ../../.config/qutebrowser/config.py;
-  xdg.configFile."task/taskrc".source = ../../.config/task/taskrc;
   xdg.configFile."waybar/config".source = ../../.config/waybar/config;
   xdg.configFile."waybar/style.css".source = ../../.config/waybar/style.css;
   xdg.configFile."wofi/nord.css".source = ../../.config/wofi/nord.css;
