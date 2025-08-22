@@ -8,6 +8,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Enable flakes
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # Flipper Zero
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
@@ -24,6 +27,7 @@
   security.pam.services.login.fprintAuth = true;
 
   # Bluetooth
+  services.blueman.enable = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -33,27 +37,24 @@
       };
     };
   };
-  services.blueman.enable = true;
 
-  # hostName
+  # Host Name
   networking.hostName = "thinkpad";
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # Easiest to use and most distros use this by default.
+  # Use Network Manager
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Set Time Zone
   time.timeZone = "America/New_York";
 
   # Desktop
+  programs.hyprland.enable = true;
   services.xserver.enable = true;
   services.xserver.excludePackages = with pkgs; [
     xterm
   ];
 
-  programs.hyprland.enable = true;
-
+  # Enable TLP
   services.tlp = {
     enable = true;
     settings = {
@@ -62,21 +63,20 @@
     };
   };
 
-  # enable docker
+  # Enable Docker
   virtualisation.docker.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define users
   users.users.brandon = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "docker" "dialout"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "docker" "dialout"];
     shell = pkgs.fish;
   };
 
-  programs.fish.enable = true;
-
+  # Packages
   nixpkgs.config.allowUnfree = true;
-
-  # packages
+  programs.fish.enable = true;
+  services.twingate.enable = true;
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
@@ -109,6 +109,7 @@
     xfce.thunar
   ];
 
+  # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     font-awesome
