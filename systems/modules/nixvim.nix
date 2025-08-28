@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     gcc
+    ripgrep
     # formatters
     alejandra
     black
