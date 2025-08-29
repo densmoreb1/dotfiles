@@ -24,10 +24,10 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # packages
   environment.systemPackages = with pkgs; [
     curl
     cryptsetup
@@ -49,16 +49,22 @@
   # fish
   programs.fish.enable = true;
 
-  # tlp
+  # TLP
   services.tlp.enable = true;
 
   # docker
   virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
-  services.openssh.ports = [6977];
+  services.openssh = {
+    enable = true;
+    ports = [6977];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = ["bdenzy"]; # Allows all users by default. Can be [ "user1" "user2" ]
+      PermitRootLogin = "no"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+    };
+  };
 
   networking.firewall.enable = false;
 
