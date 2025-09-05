@@ -48,14 +48,6 @@ in {
       path = "/home/${username}/.ssh/github.pub";
       mode = "0600";
     };
-    secrets."pass_private_key" = {
-      path = "/home/${username}/.ssh/pass";
-      mode = "0600";
-    };
-    secrets."pass_public_key" = {
-      path = "/home/${username}/.ssh/pass.pub";
-      mode = "0600";
-    };
     secrets."hyprapp_private_key" = {
       path = "/home/${username}/.ssh/hyprapp";
       mode = "0600";
