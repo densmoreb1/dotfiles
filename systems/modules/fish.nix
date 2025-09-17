@@ -8,6 +8,7 @@
       "t" = "tree";
       "ip" = "ip --color=auto";
       "v" = "nvim";
+      "gsp" = "git stash; git pull; git stash pop";
     };
     shellInit = ''
       function starship_transient_prompt_func
