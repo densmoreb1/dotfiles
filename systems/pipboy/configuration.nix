@@ -12,6 +12,7 @@
   networking.hostName = "pipboy";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.download-buffer-size = 524288000;
 
   # Easiest to use and most distros use this by default.
   networking.networkmanager.enable = true;
