@@ -79,7 +79,6 @@
   # Packages
   nixpkgs.config.allowUnfree = true;
   programs.fish.enable = true;
-  services.twingate.enable = true;
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
@@ -100,7 +99,6 @@
     sops
     stow
     tree
-    twingate
     unzip
     vim
     waybar
