@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
+    nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +14,7 @@
   outputs = {
     nixpkgs,
     home-manager,
+    nixvim,
     sops-nix,
     ...
   }: {
@@ -29,6 +31,7 @@
             home-manager.users.bdenzy = {
               imports = [
                 ./home.nix
+                nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
             };

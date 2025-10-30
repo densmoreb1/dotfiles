@@ -8,8 +8,8 @@ in {
   home.stateVersion = "25.05";
 
   home.sessionVariables = {
-    EDITOR = "vim";
-    VISUAL = "vim";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   sops = {
@@ -33,6 +33,7 @@ in {
   imports = [
     ../modules/fish.nix
     ../modules/git.nix
+    ../modules/nixvim.nix
     ../modules/startship.nix
   ];
 }
