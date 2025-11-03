@@ -86,6 +86,7 @@
     curl
     docker
     dust
+    firefox
     fish
     git
     gnupg # pass
