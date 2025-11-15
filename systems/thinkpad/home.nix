@@ -24,13 +24,23 @@ in {
 
   # Use dotfiles repo for now
   # all go in ~/.config
+  xdg.configFile."hypr" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
+    recursive = true;
+  };
+  xdg.configFile."qutebrowser/config.py" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/qutebrowser/config.py";
+  };
+  xdg.configFile."waybar" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/waybar";
+    recursive = true;
+  };
+  xdg.configFile."wofi" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/wofi";
+    recursive = true;
+  };
+
   xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
-  xdg.configFile."hypr/hyprland.conf".source = ../../.config/hypr/hyprland.conf;
-  xdg.configFile."hypr/hyprpaper.conf".source = ../../.config/hypr/hyprpaper.conf;
-  xdg.configFile."qutebrowser/config.py".source = ../../.config/qutebrowser/config.py;
-  xdg.configFile."waybar/config".source = ../../.config/waybar/config;
-  xdg.configFile."waybar/style.css".source = ../../.config/waybar/style.css;
-  xdg.configFile."wofi/nord.css".source = ../../.config/wofi/nord.css;
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
