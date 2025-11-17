@@ -91,6 +91,7 @@
     git
     gnupg # pass
     hyprpaper
+    localsend
     openvpn
     pass # passwords
     pinentry-qt # pass
