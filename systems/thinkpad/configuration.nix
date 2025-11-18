@@ -55,7 +55,11 @@
   time.timeZone = "America/New_York";
 
   # Desktop
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
