@@ -64,10 +64,6 @@
     extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
   # packages
@@ -77,6 +73,8 @@
     dust
     fish
     git
+    mangohud
+    prismlauncher
     tree
     sops
     starship
@@ -95,7 +93,7 @@
     enable = true;
     ports = [6977];
     settings = {
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
       AllowUsers = ["brandon"];
       PermitRootLogin = "no";
     };
