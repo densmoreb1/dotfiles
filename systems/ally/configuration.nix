@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  jovian,
+  ...
+}: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    jovian.nixosModules.default
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -9,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Define your hostname.
-  networking.hostName = "pipboy";
+  networking.hostName = "ally";
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.download-buffer-size = 524288000;
@@ -20,10 +24,23 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  services.xserver = {
+    enable = true;
+    desktopManager.plasma5.enable = true;
+    displayManager.sddm.enable = true;
+  };
+
+  jovian = {
+    steam.enable = true;
+    devices.steamdeck = {
+      enable = true;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bdenzy = {
+  users.users.brandon = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
   };
@@ -31,9 +48,7 @@
   # packages
   environment.systemPackages = with pkgs; [
     curl
-    cryptsetup
     btop
-    docker
     dust
     fish
     git
@@ -50,24 +65,16 @@
   # fish
   programs.fish.enable = true;
 
-  # TLP
-  services.tlp.enable = true;
-
-  # docker
-  virtualisation.docker.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
     ports = [6977];
     settings = {
       PasswordAuthentication = true;
-      AllowUsers = ["bdenzy"];
+      AllowUsers = ["brandon"];
       PermitRootLogin = "no";
     };
   };
 
   networking.firewall.enable = false;
-
-  system.stateVersion = "24.11";
 }
