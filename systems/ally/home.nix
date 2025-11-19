@@ -35,6 +35,5 @@ in {
     ../modules/git.nix
     ../modules/nixvim.nix
     ../modules/startship.nix
-    ../modules/steam-nix.nix
   ];
 }

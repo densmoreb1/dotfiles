@@ -23,7 +23,7 @@
     ...
   }: {
     nixosConfigurations = {
-      pipboy = nixpkgs.lib.nixosSystem {
+      ally = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit jovian;};
         modules = [
