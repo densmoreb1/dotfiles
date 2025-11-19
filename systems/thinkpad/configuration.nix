@@ -136,8 +136,9 @@
     openvpn
     pass # passwords
     pinentry-qt # pass
+    prismlauncher
     python313
-    qflipper
+    qFlipper
     qutebrowser
     sops
     stow
