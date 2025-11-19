@@ -154,6 +154,17 @@
     xfce.thunar
   ];
 
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    ports = [22];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = ["brandon"];
+      PermitRootLogin = "no";
+    };
+  };
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
