@@ -68,16 +68,16 @@
 
   # packages
   environment.systemPackages = with pkgs; [
-    curl
     btop
+    curl
     dust
     fish
     git
+    heroic
     mangohud
-    prismlauncher
-    tree
     sops
     starship
+    tree
     unzip
     vim
     wget
