@@ -59,8 +59,6 @@
     steam.desktopSession = "plasma";
   };
 
-  services.power-profiles-daemon.enable = false;
-
   nixpkgs.config.allowUnfree = true;
 
   programs.fish.enable = true;
