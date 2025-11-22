@@ -4,18 +4,13 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Download size
   nix.settings.download-buffer-size = 524288000;
-
-  # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Flipper Zero
@@ -110,6 +105,23 @@
   # Enable Docker
   virtualisation.docker.enable = true;
 
+  # SSH for build
+  services.openssh = {
+    enable = true;
+    ports = [22];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = ["brandon"];
+      PermitRootLogin = "no";
+    };
+  };
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    font-awesome
+  ];
+
   # Define users
   users.users.brandon = {
     isNormalUser = true;
@@ -152,23 +164,6 @@
     wofi # app launcher
     wofi-pass # pass
     xfce.thunar
-  ];
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = true;
-      AllowUsers = ["brandon"];
-      PermitRootLogin = "no";
-    };
-  };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    font-awesome
   ];
 
   system.stateVersion = "24.11";
