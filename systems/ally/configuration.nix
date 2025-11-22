@@ -2,7 +2,9 @@
   pkgs,
   jovian,
   ...
-}: {
+}: let
+  username = "brandon";
+in {
   imports = [
     ./hardware-configuration.nix
     jovian.nixosModules.default
@@ -10,6 +12,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.download-buffer-size = 524288000;
@@ -46,7 +49,7 @@
     ports = [6977];
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = ["brandon"];
+      AllowUsers = [username];
       PermitRootLogin = "no";
     };
   };
@@ -55,11 +58,19 @@
     steam.enable = true;
     devices.steamdeck.enable = true;
     steam.autoStart = true;
-    steam.user = "brandon";
+    steam.user = username;
     steam.desktopSession = "plasma";
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  powerManagement.enable = true;
+  services.handheld-daemon = {
+    enable = true;
+    user = username;
+    ui.enable = true;
+    adjustor.enable = true;
+  };
 
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
