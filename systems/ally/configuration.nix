@@ -64,14 +64,6 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  powerManagement.enable = true;
-  services.handheld-daemon = {
-    enable = true;
-    user = username;
-    ui.enable = true;
-    adjustor.enable = true;
-  };
-
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     btop
@@ -81,6 +73,7 @@ in {
     git
     heroic
     mangohud
+    ryzenadj
     sops
     starship
     tree
@@ -88,6 +81,18 @@ in {
     vim
     wget
     zip
+  ];
+
+  security.sudo.extraRules = [
+    {
+      users = [username];
+      commands = [
+        {
+          command = "${pkgs.ryzenadj}/bin/ryzenadj";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
   ];
 
   system.stateVersion = "25.11";
