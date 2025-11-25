@@ -93,6 +93,9 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
+  # Hardware updates
+  services.fwupd.enable = true;
+
   # Enable TLP
   services.tlp = {
     enable = true;
