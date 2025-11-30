@@ -48,9 +48,9 @@ in {
     enable = true;
     ports = [6977];
     settings = {
-      PasswordAuthentication = false;
-      AllowUsers = [username];
-      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+      AllowUsers = [username "root"];
+      PermitRootLogin = "yes";
     };
   };
 
