@@ -48,9 +48,9 @@ in {
     enable = true;
     ports = [6977];
     settings = {
-      PasswordAuthentication = false;
-      AllowUsers = [username];
-      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+      AllowUsers = [username "root"];
+      PermitRootLogin = "yes";
     };
   };
 
@@ -69,10 +69,13 @@ in {
     btop
     curl
     dust
+    firefox
     fish
     git
     heroic
     mangohud
+    mcpelauncher-client
+    mcpelauncher-ui-qt
     ryzenadj
     sops
     starship
@@ -83,17 +86,15 @@ in {
     zip
   ];
 
-  security.sudo.extraRules = [
-    {
-      users = [username];
-      commands = [
-        {
-          command = "${pkgs.ryzenadj}/bin/ryzenadj";
-          options = ["NOPASSWD"];
-        }
-      ];
-    }
-  ];
+  systemd.services.set-ryzenadj-tdp = {
+    description = "Set Ryzen TDP via ryzenadj";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"]; # or "multi-user.target"
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.ryzenadj}/bin/ryzenadj --stapm-limit=15000 --fast-limit=15000 --slow-limit=15000";
+    };
+  };
 
   system.stateVersion = "25.11";
 }
