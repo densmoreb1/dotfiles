@@ -1,9 +1,9 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "Brandon Densmore";
-    userEmail = "hens.tippet.1o@icloud.com";
-    extraConfig = {
+    settings = {
+      user.name = "Brandon Densmore";
+      user.email = "hens.tippet.1o@icloud.com";
       init.defaultBranch = "main";
       core.pager = "less -F -X";
     };
