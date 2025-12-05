@@ -27,9 +27,10 @@
         system = "x86_64-linux";
         specialArgs = {inherit jovian;};
         modules = [
+          ./modules/common.nix
           ./systems/ally/configuration.nix
-          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -49,8 +50,8 @@
         modules = [
           ./modules/common.nix
           ./systems/thinkpad/configuration.nix
-          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -68,9 +69,10 @@
       pipboy = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./modules/common.nix
           ./systems/pipboy/configuration.nix
-          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

@@ -11,15 +11,15 @@
 
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
-    curl
-    cryptsetup
     btop
+    cryptsetup
+    curl
     dust
     fish
     git
-    tree
     sops
     starship
+    tree
     unzip
     vim
     wget

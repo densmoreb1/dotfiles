@@ -10,18 +10,10 @@ in {
     jovian.nixosModules.default
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.download-buffer-size = 524288000;
-
   networking.hostName = "ally";
-  networking.networkmanager.enable = true;
   networking.firewall.enable = false;
-
-  time.timeZone = "America/New_York";
 
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -64,26 +56,14 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     btop
-    curl
-    dust
     firefox
-    fish
-    git
     heroic
     mangohud
     mcpelauncher-client
     mcpelauncher-ui-qt
     ryzenadj
-    sops
-    starship
-    tree
-    unzip
-    vim
-    wget
-    zip
   ];
 
   systemd.services.set-ryzenadj-tdp = {
