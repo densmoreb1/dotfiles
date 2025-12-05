@@ -56,13 +56,17 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  virtualisation.waydroid.enable = true;
+
   environment.systemPackages = with pkgs; [
     btop
     firefox
     heroic
+    lzip
     mangohud
     mcpelauncher-client
     mcpelauncher-ui-qt
+    python3
     ryzenadj
   ];
 
