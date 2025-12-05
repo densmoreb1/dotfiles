@@ -14,12 +14,12 @@ in {
 
   # Converted
   imports = [
-    ../modules/alacritty.nix
-    ../modules/fish.nix
-    ../modules/git.nix
-    ../modules/nixvim.nix
-    ../modules/startship.nix
-    ../modules/taskwarrior.nix
+    ../../modules/alacritty.nix
+    ../../modules/fish.nix
+    ../../modules/git.nix
+    ../../modules/nixvim.nix
+    ../../modules/startship.nix
+    ../../modules/taskwarrior.nix
   ];
 
   # Use dotfiles repo for now
@@ -44,7 +44,7 @@ in {
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    defaultSopsFile = ../secrets/ssh-keys.enc.yaml;
+    defaultSopsFile = ../../secrets/ssh-keys.enc.yaml;
 
     secrets."ssh_config" = {
       path = "/home/${username}/.ssh/config";

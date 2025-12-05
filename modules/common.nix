@@ -1,0 +1,28 @@
+{pkgs, ...}: {
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  nix.settings.download-buffer-size = 524288000;
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "America/New_York";
+
+  programs.fish.enable = true;
+  environment.systemPackages = with pkgs; [
+    curl
+    cryptsetup
+    btop
+    dust
+    fish
+    git
+    tree
+    sops
+    starship
+    unzip
+    vim
+    wget
+    zip
+  ];
+}

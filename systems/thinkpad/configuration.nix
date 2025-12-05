@@ -7,12 +7,6 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nix.settings.download-buffer-size = 524288000;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # Flipper Zero
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
@@ -45,12 +39,6 @@
 
   # Host Name
   networking.hostName = "thinkpad";
-
-  # Use Network Manager
-  networking.networkmanager.enable = true;
-
-  # Set Time Zone
-  time.timeZone = "America/New_York";
 
   # Desktop
   programs.hyprland = {
@@ -137,17 +125,11 @@
 
   # Packages
   nixpkgs.config.allowUnfree = true;
-  programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
-    btop
-    curl
     docker
-    dust
     firefox
-    fish
-    git
     gnupg # pass
     hyprpaper
     localsend
@@ -158,13 +140,7 @@
     python313
     qFlipper
     qutebrowser
-    sops
-    stow
-    tree
-    unzip
-    vim
     waybar
-    wget
     wirelesstools
     wl-clipboard
     wofi # app launcher
