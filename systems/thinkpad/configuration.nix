@@ -40,6 +40,9 @@
     };
   };
 
+  # Xbox controller
+  hardware.xone.enable = true;
+
   # Host Name
   networking.hostName = "thinkpad";
 
