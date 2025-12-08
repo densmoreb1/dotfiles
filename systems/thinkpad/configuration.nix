@@ -102,6 +102,8 @@
     settings = {
       START_CHARGE_THRESH_BAT0 = 79;
       STOP_CHARGE_THRESH_BAT0 = 100;
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_BOOST_ON_AC = 1;
     };
   };
 
