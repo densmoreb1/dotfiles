@@ -12,11 +12,6 @@
     enable = true;
     enableMan = true;
 
-    colorschemes.tokyonight = {
-      enable = true;
-      settings.transparent = true;
-    };
-
     globals.mapleader = " ";
     globals.maplocalleader = " ";
 

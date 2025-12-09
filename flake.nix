@@ -3,15 +3,31 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    nixvim.url = "github:nix-community/nixvim";
-    sops-nix.url = "github:Mic92/sops-nix";
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
 
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    jovian.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,6 +36,7 @@
     nixvim,
     sops-nix,
     jovian,
+    stylix,
     ...
   }: {
     nixosConfigurations = {
@@ -52,6 +69,7 @@
           ./systems/thinkpad/configuration.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
