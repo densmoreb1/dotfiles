@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,6 +38,7 @@
     sops-nix,
     jovian,
     stylix,
+    nixos-hardware,
     ...
   }: {
     nixosConfigurations = {
@@ -68,6 +70,7 @@
           ./modules/common.nix
           ./systems/thinkpad/configuration.nix
           home-manager.nixosModules.home-manager
+          nixos-hardware.nixosModules.lenovo-thinkpad-p1
           sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
           {

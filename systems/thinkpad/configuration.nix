@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelModules = ["thunderbolt"];
+
   # Flipper Zero
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
