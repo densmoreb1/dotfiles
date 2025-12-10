@@ -6,6 +6,9 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["brandon"];
 
+  # Hardware updates
+  services.fwupd.enable = true;
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";

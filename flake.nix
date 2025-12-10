@@ -48,6 +48,7 @@
         modules = [
           ./modules/common.nix
           ./systems/ally/configuration.nix
+          ./systems/ally/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           {
@@ -68,7 +69,9 @@
         system = "x86_64-linux";
         modules = [
           ./modules/common.nix
+          ./modules/nvidia.nix
           ./systems/thinkpad/configuration.nix
+          ./systems/thinkpad/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.lenovo-thinkpad-p1
           sops-nix.nixosModules.sops
@@ -92,6 +95,7 @@
         modules = [
           ./modules/common.nix
           ./systems/pipboy/configuration.nix
+          ./systems/pipboy/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           {

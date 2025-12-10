@@ -6,7 +6,6 @@
   username = "brandon";
 in {
   imports = [
-    ./hardware-configuration.nix
     jovian.nixosModules.default
   ];
 

@@ -1,12 +1,7 @@
 {pkgs, ...}: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
   networking.hostName = "pipboy";
   networking.firewall.enable = false;
 
-  services.fwupd.enable = true;
   services.tlp.enable = true;
   services.openssh = {
     enable = true;
