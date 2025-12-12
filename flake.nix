@@ -63,7 +63,7 @@
             };
             home-manager.users.brandon = {
               imports = [
-                ./systems/ally/home.nix
+                ./home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
@@ -93,6 +93,7 @@
             };
             home-manager.users.${username} = {
               imports = [
+                ./home.nix
                 ./systems/thinkpad/home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
@@ -120,7 +121,7 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./systems/pipboy/home.nix
+                ./home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];

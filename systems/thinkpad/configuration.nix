@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{pkgs, ...}: {
   # Flipper Zero
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
@@ -76,7 +72,6 @@
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
-    docker
     firefox
     gnupg # pass
     hyprpaper

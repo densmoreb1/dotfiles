@@ -3,24 +3,28 @@
   username,
   ...
 }: {
-  programs.home-manager.enable = true;
-
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "25.05";
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+  sops = {
+    secrets."hyprapp_private_key" = {
+      path = "/home/${username}/.ssh/hyprapp";
+      mode = "0600";
+    };
+    secrets."hyprapp_public_key" = {
+      path = "/home/${username}/.ssh/hyprapp.pub";
+      mode = "0600";
+    };
+    secrets."pipboy_private_key" = {
+      path = "/home/${username}/.ssh/pipboy";
+      mode = "0600";
+    };
+    secrets."pipboy_public_key" = {
+      path = "/home/${username}/.ssh/pipboy.pub";
+      mode = "0600";
+    };
   };
 
   # Converted
   imports = [
     ../../modules/alacritty.nix
-    ../../modules/fish.nix
-    ../../modules/git.nix
-    ../../modules/nixvim.nix
-    ../../modules/startship.nix
     ../../modules/taskwarrior.nix
   ];
 
@@ -43,38 +47,4 @@
   };
 
   xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
-
-  sops = {
-    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    defaultSopsFile = ../../secrets/ssh-keys.enc.yaml;
-
-    secrets."ssh_config" = {
-      path = "/home/${username}/.ssh/config";
-      mode = "0600";
-    };
-    secrets."github_private_key" = {
-      path = "/home/${username}/.ssh/github";
-      mode = "0600";
-    };
-    secrets."github_public_key" = {
-      path = "/home/${username}/.ssh/github.pub";
-      mode = "0600";
-    };
-    secrets."hyprapp_private_key" = {
-      path = "/home/${username}/.ssh/hyprapp";
-      mode = "0600";
-    };
-    secrets."hyprapp_public_key" = {
-      path = "/home/${username}/.ssh/hyprapp.pub";
-      mode = "0600";
-    };
-    secrets."pipboy_private_key" = {
-      path = "/home/${username}/.ssh/pipboy";
-      mode = "0600";
-    };
-    secrets."pipboy_public_key" = {
-      path = "/home/${username}/.ssh/pipboy.pub";
-      mode = "0600";
-    };
-  };
 }
