@@ -49,6 +49,7 @@
         specialArgs = {inherit jovian username;};
         modules = [
           ./modules/common.nix
+          ./modules/style.nix
           ./systems/ally/configuration.nix
           ./systems/ally/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -76,6 +77,7 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
+          ./modules/style.nix
           ./modules/nvidia.nix
           ./systems/thinkpad/configuration.nix
           ./systems/thinkpad/hardware-configuration.nix

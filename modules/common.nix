@@ -46,23 +46,6 @@
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
   };
 
-  # styling
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-    opacity = {
-      terminal = 0.8;
-      applications = 0.8;
-    };
-    fonts = {
-      sizes.terminal = 13;
-      serif.package = pkgs.nerd-fonts.jetbrains-mono;
-      sansSerif.package = pkgs.nerd-fonts.jetbrains-mono;
-      monospace.package = pkgs.nerd-fonts.jetbrains-mono;
-      emoji.package = pkgs.noto-fonts-color-emoji;
-    };
-  };
-
   # Shell
   programs.fish.enable = true;
 
