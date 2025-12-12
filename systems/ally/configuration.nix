@@ -1,10 +1,10 @@
 {
   pkgs,
+  lib,
   jovian,
+  username,
   ...
-}: let
-  username = "brandon";
-in {
+}: {
   imports = [
     jovian.nixosModules.default
   ];
@@ -12,7 +12,6 @@ in {
   boot.loader.timeout = 0;
 
   networking.hostName = "ally";
-  networking.firewall.enable = false;
 
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -21,6 +20,8 @@ in {
     variant = "";
   };
 
+  services.tlp.enable = lib.mkForce false;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -28,20 +29,11 @@ in {
     pulse.enable = true;
   };
 
-  users.users.brandon = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"];
-    shell = pkgs.fish;
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
-  };
-
   services.openssh = {
-    enable = true;
-    ports = [6977];
     settings = {
-      PasswordAuthentication = true;
-      AllowUsers = [username "root"];
-      PermitRootLogin = "yes";
+      PasswordAuthentication = lib.mkForce true;
+      AllowUsers = ["root"];
+      PermitRootLogin = lib.mkForce "yes";
     };
   };
 
@@ -58,7 +50,6 @@ in {
   virtualisation.waydroid.enable = true;
 
   environment.systemPackages = with pkgs; [
-    btop
     firefox
     heroic
     lzip

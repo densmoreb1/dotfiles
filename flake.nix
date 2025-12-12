@@ -40,20 +40,26 @@
     stylix,
     nixos-hardware,
     ...
-  }: {
+  }: let
+    username = "brandon";
+  in {
     nixosConfigurations = {
       ally = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit jovian;};
+        specialArgs = {inherit jovian username;};
         modules = [
           ./modules/common.nix
           ./systems/ally/configuration.nix
           ./systems/ally/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit username;
+            };
             home-manager.users.brandon = {
               imports = [
                 ./systems/ally/home.nix
@@ -67,6 +73,7 @@
 
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
           ./modules/nvidia.nix
@@ -79,7 +86,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.brandon = {
+            home-manager.extraSpecialArgs = {
+              inherit username;
+            };
+            home-manager.users.${username} = {
               imports = [
                 ./systems/thinkpad/home.nix
                 nixvim.homeModules.nixvim
@@ -92,16 +102,21 @@
 
       pipboy = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
           ./systems/pipboy/configuration.nix
           ./systems/pipboy/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.bdenzy = {
+            home-manager.extraSpecialArgs = {
+              inherit username;
+            };
+            home-manager.users.${username} = {
               imports = [
                 ./systems/pipboy/home.nix
                 nixvim.homeModules.nixvim

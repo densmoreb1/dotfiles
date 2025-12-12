@@ -1,6 +1,8 @@
-{config, ...}: let
-  username = "brandon";
-in {
+{
+  config,
+  username,
+  ...
+}: {
   programs.home-manager.enable = true;
 
   home.username = username;
