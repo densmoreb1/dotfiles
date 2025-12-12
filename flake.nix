@@ -61,7 +61,7 @@
             home-manager.extraSpecialArgs = {
               inherit username;
             };
-            home-manager.users.brandon = {
+            home-manager.users.${username} = {
               imports = [
                 ./home.nix
                 nixvim.homeModules.nixvim
@@ -96,6 +96,36 @@
               imports = [
                 ./home.nix
                 ./systems/thinkpad/home.nix
+                nixvim.homeModules.nixvim
+                sops-nix.homeManagerModules.sops
+              ];
+            };
+          }
+        ];
+      };
+
+      rose = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit jovian username;};
+        modules = [
+          ./modules/common.nix
+          ./modules/hyprland.nix
+          ./modules/style.nix
+          ./systems/rose/configuration.nix
+          ./systems/rose/hardware-configuration.nix
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit username;
+            };
+            home-manager.users.${username} = {
+              imports = [
+                ./home.nix
+                ./systems/rose/home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
