@@ -32,14 +32,14 @@
   # Host Name
   networking.hostName = "thinkpad";
 
+  # Login
+  services.displayManager.ly.enable = true;
+
   # Desktop
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
     xwayland.enable = true;
   };
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.xserver.excludePackages = with pkgs; [
     xterm
