@@ -77,8 +77,9 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
-          ./modules/style.nix
+          ./modules/hyprland.nix
           ./modules/nvidia.nix
+          ./modules/style.nix
           ./systems/thinkpad/configuration.nix
           ./systems/thinkpad/hardware-configuration.nix
           home-manager.nixosModules.home-manager
