@@ -21,7 +21,7 @@
     steam.enable = true;
     steam.user = username;
     steam.desktopSession = "hyprland";
-    jovian.hardware.has.amd.gpu = true;
+    hardware.has.amd.gpu = true;
   };
 
   # Enable Docker
