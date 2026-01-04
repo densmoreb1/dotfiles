@@ -1,7 +1,31 @@
-{config, ...}: {
+{
+  config,
+  username,
+  ...
+}: {
+  sops = {
+    secrets."hyprapp_private_key" = {
+      path = "/home/${username}/.ssh/hyprapp";
+      mode = "0600";
+    };
+    secrets."hyprapp_public_key" = {
+      path = "/home/${username}/.ssh/hyprapp.pub";
+      mode = "0600";
+    };
+    secrets."pipboy_private_key" = {
+      path = "/home/${username}/.ssh/pipboy";
+      mode = "0600";
+    };
+    secrets."pipboy_public_key" = {
+      path = "/home/${username}/.ssh/pipboy.pub";
+      mode = "0600";
+    };
+  };
+
   # Converted
   imports = [
     ../../modules/alacritty.nix
+    ../../modules/taskwarrior.nix
   ];
 
   # Use dotfiles repo for now
