@@ -54,8 +54,6 @@
     heroic
     lzip
     mangohud
-    mcpelauncher-client
-    mcpelauncher-ui-qt
     python3
     ryzenadj
   ];

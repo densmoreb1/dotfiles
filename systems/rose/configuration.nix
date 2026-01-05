@@ -60,7 +60,7 @@
     wl-clipboard
     wofi # app launcher
     wofi-pass # pass
-    xfce.thunar
+    thunar
   ];
 
   system.stateVersion = "25.11";
