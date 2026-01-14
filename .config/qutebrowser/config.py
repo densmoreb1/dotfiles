@@ -13,7 +13,7 @@ config.bind("po", "config-cycle colors.webpage.darkmode.enabled")
 
 config.bind("st", "open -- qute://settings/")
 config.bind("sb", "open -- qute://bindings/")
-config.bind("gH", "open -- 192.168.0.70:8080")
+config.bind("gH", "open -- 192.168.1.155:8080")
 config.bind("clh", "history-clear")
 
 # c.fonts.web.family.sans_serif = "JetbrainsMono Nerd Font"

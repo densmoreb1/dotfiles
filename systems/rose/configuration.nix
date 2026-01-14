@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   jovian,
   username,
   ...
@@ -37,6 +38,12 @@
     steam.user = username;
     steam.desktopSession = "hyprland";
     hardware.has.amd.gpu = true;
+  };
+
+  services.openssh = {
+    settings = {
+      PasswordAuthentication = lib.mkForce true;
+    };
   };
 
   # Enable Docker
