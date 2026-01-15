@@ -54,20 +54,20 @@
     bibata-cursors
     firefox
     gnupg # pass
-    mangohud
     hyprpaper
     localsend
+    mangohud
     pass # passwords
     pinentry-qt # pass
     python313
     qFlipper
     qutebrowser
+    thunar
     waybar
     wirelesstools
     wl-clipboard
     wofi # app launcher
     wofi-pass # pass
-    thunar
   ];
 
   system.stateVersion = "25.11";

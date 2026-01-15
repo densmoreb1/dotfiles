@@ -5,7 +5,7 @@ c.content.cookies.store = True
 
 c.downloads.location.directory = "~/Downloads"
 
-c.zoom.default = "125%"
+c.zoom.default = "100%"
 c.fonts.default_size = "11pt"
 
 c.colors.webpage.darkmode.enabled = True
