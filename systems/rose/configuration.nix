@@ -40,12 +40,6 @@
     hardware.has.amd.gpu = true;
   };
 
-  services.openssh = {
-    settings = {
-      PasswordAuthentication = lib.mkForce true;
-    };
-  };
-
   # Enable Docker
   virtualisation.docker.enable = true;
 
