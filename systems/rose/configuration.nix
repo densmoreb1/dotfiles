@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   jovian,
   username,
   ...
@@ -26,6 +25,7 @@
   # Xbox controller
   hardware.xone.enable = true;
 
+  # Audio
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -33,6 +33,7 @@
     pulse.enable = true;
   };
 
+  # Steam
   jovian = {
     steam.enable = true;
     steam.user = username;

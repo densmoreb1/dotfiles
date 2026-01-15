@@ -49,6 +49,7 @@
         specialArgs = {inherit jovian username;};
         modules = [
           ./modules/common.nix
+          ./modules/distributed-builds.nix
           ./modules/style.nix
           ./systems/ally/configuration.nix
           ./systems/ally/hardware-configuration.nix
@@ -77,6 +78,7 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
+          ./modules/distributed-builds.nix
           ./modules/hyprland.nix
           ./modules/nvidia.nix
           ./modules/style.nix
@@ -139,6 +141,7 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/common.nix
+          ./modules/distributed-builds.nix
           ./systems/pipboy/configuration.nix
           ./systems/pipboy/hardware-configuration.nix
           home-manager.nixosModules.home-manager
