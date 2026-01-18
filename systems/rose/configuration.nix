@@ -18,6 +18,10 @@
     settings = {
       General = {
         Experimental = true; # Show battery charge of Bluetooth devices
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
       };
     };
   };
