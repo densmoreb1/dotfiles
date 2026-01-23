@@ -2,6 +2,7 @@ config.load_autoconfig(False)
 
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = True
+c.content.geolocation = False
 
 c.downloads.location.directory = "~/Downloads"
 

@@ -58,6 +58,7 @@
     mangohud
     pass # passwords
     pinentry-qt # pass
+    mcpelauncher-ui-qt
     python313
     qFlipper
     qutebrowser
