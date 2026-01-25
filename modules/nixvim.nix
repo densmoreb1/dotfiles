@@ -135,10 +135,11 @@
         enable = true;
         settings = {
           formatters_by_ft = {
-            python = ["black"];
-            nix = ["alejandra"];
-            markdown = ["prettier"];
             json = ["prettier"];
+            markdown = ["prettier"];
+            nix = ["alejandra"];
+            python = ["black"];
+            yaml = ["prettier"];
           };
           format_on_save = {
             timeout_ms = 500;
