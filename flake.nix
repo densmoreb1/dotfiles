@@ -136,6 +136,34 @@
         ];
       };
 
+      maria = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit username;};
+        modules = [
+          ./modules/common.nix
+          ./modules/distributed-builds.nix
+          ./systems/maria/configuration.nix
+          ./systems/maria/hardware-configuration.nix
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit username;
+            };
+            home-manager.users.${username} = {
+              imports = [
+                ./home.nix
+                nixvim.homeModules.nixvim
+                sops-nix.homeManagerModules.sops
+              ];
+            };
+          }
+        ];
+      };
+
       pipboy = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit username;};
