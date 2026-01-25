@@ -41,7 +41,6 @@
   jovian = {
     steam.enable = true;
     steam.user = username;
-    steam.desktopSession = "hyprland";
     hardware.has.amd.gpu = true;
   };
 
@@ -53,6 +52,7 @@
     bibata-cursors
     firefox
     gnupg # pass
+    heroic
     hyprpaper
     localsend
     mangohud
