@@ -37,6 +37,25 @@
     pulse.enable = true;
   };
 
+  # Remove cookies
+  systemd.timers."remove-cookies" = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+  };
+
+  systemd.services."remove-cookies" = {
+    script = ''
+      rm /home/${username}/.local/share/qutebrowser/webengine/Cookies
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
+
   # Steam
   jovian = {
     steam.enable = true;
