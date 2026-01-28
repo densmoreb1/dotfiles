@@ -31,6 +31,11 @@
         key = "<C-u>";
         mode = ["n"];
       }
+      {
+        action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+        key = "gd";
+        mode = "n";
+      }
     ];
 
     opts = {
