@@ -75,7 +75,6 @@
     hyprpaper
     localsend
     mangohud
-    neomutt
     pass # passwords
     pinentry-qt # pass
     python313

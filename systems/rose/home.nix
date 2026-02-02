@@ -25,7 +25,6 @@
   # Converted
   imports = [
     ../../modules/alacritty.nix
-    ../../modules/neomutt.nix
     ../../modules/taskwarrior.nix
   ];
 
@@ -33,10 +32,6 @@
   # all go in ~/.config
   xdg.configFile."hypr" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
-    recursive = true;
-  };
-  xdg.configFile."neomutt" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/neomutt";
     recursive = true;
   };
   xdg.configFile."qutebrowser/config.py" = {
