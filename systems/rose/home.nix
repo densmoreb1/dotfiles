@@ -25,6 +25,7 @@
   # Converted
   imports = [
     ../../modules/alacritty.nix
+    ../../modules/neomutt.nix
     ../../modules/taskwarrior.nix
   ];
 
