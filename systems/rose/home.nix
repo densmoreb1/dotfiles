@@ -35,6 +35,10 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
     recursive = true;
   };
+  xdg.configFile."neomutt" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/neomutt";
+    recursive = true;
+  };
   xdg.configFile."qutebrowser/config.py" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/qutebrowser/config.py";
   };
@@ -46,6 +50,4 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/wofi";
     recursive = true;
   };
-
-  xdg.configFile."black/pyproject.toml".source = ../../.config/black/pyproject.toml;
 }
