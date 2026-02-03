@@ -43,7 +43,7 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "docker" "dialout"];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une brandon@archlinux"];
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOgjGHn32ltSLOtejcPrFpo/BIErzcyqyr0q4tUY2une"];
   };
 
   # Shell

@@ -73,8 +73,13 @@
     gnupg # pass
     heroic
     hyprpaper
+    isync
     localsend
+    lynx
     mangohud
+    msmtp
+    mutt-wizard
+    neomutt
     pass # passwords
     pinentry-qt # pass
     python313

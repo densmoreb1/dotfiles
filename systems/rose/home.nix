@@ -4,14 +4,6 @@
   ...
 }: {
   sops = {
-    secrets."hyprapp_private_key" = {
-      path = "/home/${username}/.ssh/hyprapp";
-      mode = "0600";
-    };
-    secrets."hyprapp_public_key" = {
-      path = "/home/${username}/.ssh/hyprapp.pub";
-      mode = "0600";
-    };
     secrets."pipboy_private_key" = {
       path = "/home/${username}/.ssh/pipboy";
       mode = "0600";
