@@ -1,8 +1,7 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{pkgs, ...}: {
+  # Host Name
+  networking.hostName = "thinkpad";
+
   # Flipper Zero
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE="0666", GROUP="dialout"
@@ -18,45 +17,11 @@
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
   security.pam.services.login.fprintAuth = true;
 
-  # Bluetooth
-  services.blueman.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true; # Show battery charge of Bluetooth devices
-      };
-    };
-  };
-
   # Xbox controller
   hardware.xone.enable = true;
 
-  # Host Name
-  networking.hostName = "thinkpad";
-
   # Steam
   programs.steam.enable = true;
-
-  # Remove cookies
-  systemd.timers."remove-cookies" = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "weekly";
-      Persistent = true;
-    };
-  };
-
-  systemd.services."remove-cookies" = {
-    script = ''
-      rm /home/${username}/.local/share/qutebrowser/webengine/Cookies
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
-    };
-  };
 
   # Enable TLP
   services.tlp = {
@@ -71,29 +36,6 @@
 
   # Enable Docker
   virtualisation.docker.enable = true;
-
-  # Packages
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    bibata-cursors
-    brightnessctl
-    firefox
-    gnupg # pass
-    hyprpaper
-    localsend
-    openvpn
-    pass # passwords
-    pinentry-qt # pass
-    python313
-    qFlipper
-    qutebrowser
-    waybar
-    wirelesstools
-    wl-clipboard
-    wofi # app launcher
-    wofi-pass # pass
-    thunar
-  ];
 
   system.stateVersion = "24.11";
 }

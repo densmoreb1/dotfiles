@@ -16,8 +16,7 @@
 
   # Converted
   imports = [
-    ../../modules/alacritty.nix
-    ../../modules/taskwarrior.nix
+    ../desktop/alacritty.nix
   ];
 
   # Use dotfiles repo for now

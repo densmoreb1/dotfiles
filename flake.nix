@@ -48,9 +48,9 @@
         system = "x86_64-linux";
         specialArgs = {inherit jovian username;};
         modules = [
-          ./modules/common.nix
-          ./modules/distributed-builds.nix
-          ./modules/style.nix
+          ./modules/system/common.nix
+          ./modules/system/distributed-builds.nix
+          ./modules/system/style.nix
           ./systems/ally/configuration.nix
           ./systems/ally/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -64,7 +64,7 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
+                ./modules/home/common.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
@@ -77,11 +77,12 @@
         system = "x86_64-linux";
         specialArgs = {inherit username;};
         modules = [
-          ./modules/common.nix
-          ./modules/distributed-builds.nix
-          ./modules/hyprland.nix
-          ./modules/nvidia.nix
-          ./modules/style.nix
+          ./modules/desktop/hyprland.nix
+          ./modules/system/bluetooth.nix
+          ./modules/system/common.nix
+          ./modules/system/distributed-builds.nix
+          ./modules/system/nvidia.nix
+          ./modules/system/style.nix
           ./systems/thinkpad/configuration.nix
           ./systems/thinkpad/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -96,8 +97,8 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
-                ./systems/thinkpad/home.nix
+                ./modules/home/common.nix
+                ./modules/home/desktop-home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
@@ -110,9 +111,10 @@
         system = "x86_64-linux";
         specialArgs = {inherit jovian username;};
         modules = [
-          ./modules/common.nix
-          ./modules/hyprland.nix
-          ./modules/style.nix
+          ./modules/desktop/hyprland.nix
+          ./modules/system/bluetooth.nix
+          ./modules/system/common.nix
+          ./modules/system/style.nix
           ./systems/rose/configuration.nix
           ./systems/rose/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -126,8 +128,8 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
-                ./systems/rose/home.nix
+                ./modules/home/common.nix
+                ./modules/home/desktop-home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
@@ -140,8 +142,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit username;};
         modules = [
-          ./modules/common.nix
-          ./modules/distributed-builds.nix
+          ./modules/system/common.nix
+          ./modules/system/distributed-builds.nix
           ./systems/maria/configuration.nix
           ./systems/maria/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -155,7 +157,7 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
+                ./modules/home/common.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];
@@ -168,8 +170,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit username;};
         modules = [
-          ./modules/common.nix
-          ./modules/distributed-builds.nix
+          ./modules/system/common.nix
+          ./modules/system/distributed-builds.nix
           ./systems/pipboy/configuration.nix
           ./systems/pipboy/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -183,7 +185,7 @@
             };
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
+                ./modules/home/common.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
               ];

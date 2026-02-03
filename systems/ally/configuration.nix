@@ -45,10 +45,6 @@
     steam.desktopSession = "plasma";
   };
 
-  nixpkgs.config.allowUnfree = true;
-
-  virtualisation.waydroid.enable = true;
-
   environment.systemPackages = with pkgs; [
     firefox
     heroic
