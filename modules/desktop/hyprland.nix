@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ./remove-cookies.nix
+  ];
+
   # Login
   services.displayManager.ly.enable = true;
 
