@@ -14,13 +14,11 @@
     };
   };
 
-  # Converted
   imports = [
     ../desktop/alacritty.nix
   ];
 
-  # Use dotfiles repo for now
-  # all go in ~/.config
+  # Symlinks
   xdg.configFile."hypr" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
     recursive = true;

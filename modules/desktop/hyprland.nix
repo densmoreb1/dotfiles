@@ -15,6 +15,7 @@
   # Packages
   environment.systemPackages = with pkgs; [
     bibata-cursors
+    brightnessctl
     firefox
     heroic
     hyprpaper

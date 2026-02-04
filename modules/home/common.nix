@@ -14,6 +14,13 @@
     VISUAL = "nvim";
   };
 
+  imports = [
+    ../system/fish.nix
+    ../system/git.nix
+    ../system/nixvim.nix
+    ../system/startship.nix
+  ];
+
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ../../secrets/ssh-keys.enc.yaml;
@@ -31,11 +38,4 @@
       mode = "0600";
     };
   };
-
-  imports = [
-    ../system/fish.nix
-    ../system/git.nix
-    ../system/nixvim.nix
-    ../system/startship.nix
-  ];
 }
