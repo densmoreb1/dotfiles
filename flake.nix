@@ -78,6 +78,7 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/desktop/hyprland.nix
+          ./modules/desktop/mail.nix
           ./modules/system/bluetooth.nix
           ./modules/system/common.nix
           ./modules/system/distributed-builds.nix
@@ -112,6 +113,7 @@
         specialArgs = {inherit jovian username;};
         modules = [
           ./modules/desktop/hyprland.nix
+          ./modules/desktop/mail.nix
           ./modules/system/bluetooth.nix
           ./modules/system/common.nix
           ./modules/system/style.nix
