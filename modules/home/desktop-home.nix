@@ -16,9 +16,8 @@
 
   imports = [
     ../desktop/alacritty.nix
+    ../desktop/mako.nix
   ];
-
-  services.mako.enable = true;
 
   # Symlinks
   xdg.configFile."hypr" = {
