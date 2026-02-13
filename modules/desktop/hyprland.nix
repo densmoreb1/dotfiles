@@ -16,9 +16,9 @@
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
-    firefox
     heroic
     hyprpaper
+    libnotify # notifications
     localsend
     mangohud
     python313
