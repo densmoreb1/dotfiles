@@ -3,7 +3,7 @@
   systemd.timers."remove-cookies" = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "weekly";
+      OnCalendar = "monthly";
       Persistent = true;
     };
   };
