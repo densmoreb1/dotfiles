@@ -49,7 +49,6 @@
         specialArgs = {inherit jovian username;};
         modules = [
           ./modules/system/common.nix
-          ./modules/system/distributed-builds.nix
           ./modules/system/style.nix
           ./systems/ally/configuration.nix
           ./systems/ally/hardware-configuration.nix
@@ -81,7 +80,6 @@
           ./modules/desktop/mail.nix
           ./modules/system/bluetooth.nix
           ./modules/system/common.nix
-          ./modules/system/distributed-builds.nix
           ./modules/system/nvidia.nix
           ./modules/system/style.nix
           ./systems/thinkpad/configuration.nix
@@ -145,7 +143,6 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/system/common.nix
-          ./modules/system/distributed-builds.nix
           ./systems/maria/configuration.nix
           ./systems/maria/hardware-configuration.nix
           home-manager.nixosModules.home-manager
@@ -173,7 +170,6 @@
         specialArgs = {inherit username;};
         modules = [
           ./modules/system/common.nix
-          ./modules/system/distributed-builds.nix
           ./systems/pipboy/configuration.nix
           ./systems/pipboy/hardware-configuration.nix
           home-manager.nixosModules.home-manager
