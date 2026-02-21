@@ -15,8 +15,8 @@
   };
 
   imports = [
-    ../desktop/alacritty.nix
-    ../desktop/mako.nix
+    ../modules-home/alacritty.nix
+    ../modules-home/mako.nix
   ];
 
   # Symlinks

@@ -15,15 +15,15 @@
   };
 
   imports = [
-    ../system/fish.nix
-    ../system/git.nix
-    ../system/nixvim.nix
-    ../system/startship.nix
+    ../modules-home/fish.nix
+    ../modules-home/git.nix
+    ../modules-home/nixvim.nix
+    ../modules-home/starship.nix
   ];
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    defaultSopsFile = ../../secrets/ssh-keys.enc.yaml;
+    defaultSopsFile = ../secrets/ssh-keys.enc.yaml;
 
     secrets."ssh_config" = {
       path = "/home/${username}/.ssh/config";
