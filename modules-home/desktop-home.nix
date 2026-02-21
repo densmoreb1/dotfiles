@@ -17,6 +17,7 @@
   imports = [
     ../modules-home/alacritty.nix
     ../modules-home/mako.nix
+    ../modules-home/wofi.nix
   ];
 
   # Symlinks
@@ -29,10 +30,6 @@
   };
   xdg.configFile."waybar" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/waybar";
-    recursive = true;
-  };
-  xdg.configFile."wofi" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/wofi";
     recursive = true;
   };
 }
