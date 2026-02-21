@@ -18,15 +18,13 @@
     ../modules-home/alacritty.nix
     ../modules-home/mako.nix
     ../modules-home/wofi.nix
+    ../modules-home/qutebrowser.nix
   ];
 
   # Symlinks
   xdg.configFile."hypr" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
     recursive = true;
-  };
-  xdg.configFile."qutebrowser/config.py" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/qutebrowser/config.py";
   };
   xdg.configFile."waybar" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/waybar";
