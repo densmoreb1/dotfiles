@@ -78,6 +78,7 @@
         modules = [
           ./modules-desktop/hyprland.nix
           ./modules-desktop/mail.nix
+          ./modules-desktop/remove-cookies.nix
           ./modules-system/bluetooth.nix
           ./modules-system/common.nix
           ./modules-system/nvidia.nix
@@ -112,6 +113,7 @@
         modules = [
           ./modules-desktop/hyprland.nix
           ./modules-desktop/mail.nix
+          ./modules-desktop/remove-cookies.nix
           ./modules-system/bluetooth.nix
           ./modules-system/common.nix
           ./modules-system/style.nix

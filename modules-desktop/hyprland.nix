@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./remove-cookies.nix
-  ];
-
   # Login
   services.displayManager.ly.enable = true;
 
@@ -23,7 +19,6 @@
     mangohud
     python313
     qFlipper
-    qutebrowser
     thunar
     waybar
     wirelesstools
