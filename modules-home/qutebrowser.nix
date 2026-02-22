@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = false;
@@ -17,9 +17,10 @@
         cookies.store = true;
         geolocation = false;
       };
+      colors.statusbar.insert.bg = lib.mkForce "#139E41";
+      colors.webpage.darkmode.enabled = true;
       downloads.location.directory = "~/Downloads";
       zoom.default = "100%";
-      colors.webpage.darkmode.enabled = true;
     };
   };
 }
