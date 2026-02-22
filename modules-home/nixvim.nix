@@ -66,6 +66,7 @@
 
     extraConfigLua = ''
       vim.opt.spelllang = { 'en_us' }
+      vim.cmd("let g:netrw_liststyle = 3")
     '';
 
     plugins = {
