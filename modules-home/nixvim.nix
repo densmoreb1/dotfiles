@@ -165,13 +165,13 @@
             {name = "path";}
           ];
           mapping = {
-            "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<C-u>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-d>" = "cmp.mapping.scroll_docs(4)";
             "<C-Space>" = "cmp.mapping.complete()";
             "<C-e>" = "cmp.mapping.abort()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = "cmp.mapping.select_next_item()";
-            "<S-Tab>" = "cmp.mapping.select_prev_item()";
+            "<Tab>" = "cmp.mapping.confirm({ select = true })";
+            "<C-j>" = "cmp.mapping.select_next_item()";
+            "<C-k>" = "cmp.mapping.select_prev_item()";
           };
         };
       };
