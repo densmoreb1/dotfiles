@@ -47,7 +47,6 @@
 
   environment.systemPackages = with pkgs; [
     firefox
-    heroic
     lzip
     mangohud
     python3
