@@ -16,10 +16,12 @@
         cookies.accept = "no-3rdparty";
         cookies.store = true;
         geolocation = false;
+        pdfjs = true;
       };
       colors.statusbar.insert.bg = lib.mkForce "#139E41";
       colors.webpage.darkmode.enabled = true;
       downloads.location.directory = "~/Downloads";
+      url.start_pages = "192.168.1.155:8080";
       zoom.default = "100%";
     };
   };
