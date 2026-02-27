@@ -16,7 +16,6 @@
     hyprpaper
     libnotify # notifications
     localsend
-    mangohud
     python313
     qFlipper
     thunar

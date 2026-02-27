@@ -17,6 +17,7 @@
   imports = [
     ../modules-home/alacritty.nix
     ../modules-home/mako.nix
+    ../modules-home/mangohud.nix
     ../modules-home/wofi.nix
     ../modules-home/qutebrowser.nix
   ];
