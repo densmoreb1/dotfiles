@@ -17,6 +17,7 @@
         cookies.store = true;
         geolocation = false;
         pdfjs = true;
+        tls.certificate_errors = "ask-block-thirdparty";
       };
       colors.statusbar.insert.bg = lib.mkForce "#139E41";
       colors.webpage.darkmode.enabled = true;
