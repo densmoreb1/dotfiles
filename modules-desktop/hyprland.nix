@@ -20,9 +20,9 @@
     qFlipper
     thunar
     waybar
-    wirelesstools
     wl-clipboard
     wofi # app launcher
+    twingate
 
     # Pass password manager
     gnupg
