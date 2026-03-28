@@ -44,34 +44,6 @@
     username = "brandon";
   in {
     nixosConfigurations = {
-      ally = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit jovian username;};
-        modules = [
-          ./modules-system/common.nix
-          ./modules-system/style.nix
-          ./systems/ally/configuration.nix
-          ./systems/ally/hardware-configuration.nix
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit username;
-            };
-            home-manager.users.${username} = {
-              imports = [
-                ./modules-home/common.nix
-                nixvim.homeModules.nixvim
-                sops-nix.homeManagerModules.sops
-              ];
-            };
-          }
-        ];
-      };
-
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit username;};
