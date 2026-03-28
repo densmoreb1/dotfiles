@@ -15,11 +15,11 @@
   };
 
   imports = [
-    ../modules-home/alacritty.nix
-    ../modules-home/mako.nix
-    ../modules-home/mangohud.nix
-    ../modules-home/wofi.nix
-    ../modules-home/qutebrowser.nix
+    ../homemanager/alacritty.nix
+    ../homemanager/mako.nix
+    ../homemanager/mangohud.nix
+    ../homemanager/wofi.nix
+    ../homemanager/qutebrowser.nix
   ];
 
   # Symlinks

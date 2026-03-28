@@ -1,4 +1,8 @@
 {...}: {
+  imports = [
+    ../../modules/system/default.nix
+  ];
+
   networking.hostName = "maria";
 
   systemd.tpm2.enable = false;

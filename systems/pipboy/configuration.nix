@@ -1,4 +1,8 @@
 {...}: {
+  imports = [
+    ../../modules/system/default.nix
+  ];
+
   networking.hostName = "pipboy";
 
   virtualisation.docker.enable = true;
