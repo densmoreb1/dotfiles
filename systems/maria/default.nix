@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
-    ../../modules/system/default.nix
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../modules/system/default.nix
   ];
 
   networking.hostName = "maria";
@@ -31,7 +31,7 @@
 
   system.stateVersion = "24.11";
 
-  ########### Hardware config
+  # Hardware
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "ehci_pci" "sd_mod"];
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = [];
