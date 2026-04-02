@@ -37,6 +37,12 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/55B0-F077";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/47deaee9-9beb-4a16-b070-45f3cc76783f";
     fsType = "ext4";
@@ -58,14 +64,15 @@
 
   boot.initrd.luks.devices."cryptmedia1".device = "/dev/disk/by-uuid/d8122567-0284-4989-8402-4d36a358f75d";
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/55B0-F077";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+  fileSystems."/mnt/media2" = {
+    device = "/dev/disk/by-uuid/ac1168df-4e9c-4cf7-8d83-dcee9f73910f";
+    fsType = "ext4";
   };
 
+  boot.initrd.luks.devices."cryptmedia2".device = "/dev/disk/by-uuid/548def7c-1f1a-47d5-8548-d9530a305f16";
+
   fileSystems."/media" = {
-    device = "/mnt/media1:/mnt/mediaroot";
+    device = "/mnt/media1:/mnt/media2:/mnt/mediaroot";
     fsType = "fuse.mergerfs";
     options = [
       "defaults"
