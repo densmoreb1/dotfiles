@@ -22,7 +22,6 @@
     waybar
     wl-clipboard
     wofi # app launcher
-    twingate
 
     # Pass password manager
     gnupg

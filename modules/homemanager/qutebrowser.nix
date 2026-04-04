@@ -7,7 +7,7 @@
         "po" = "config-cycle colors.webpage.darkmode.enabled";
         "st" = "open -- qute://settings/";
         "sb" = "open -- qute://bindings/";
-        "gH" = "open -t home.local:8080";
+        "gH" = "open -t 192.168.0.70:8080";
         "clh" = "history-clear";
       };
     };
@@ -22,7 +22,7 @@
       colors.statusbar.insert.bg = lib.mkForce "#139E41";
       colors.webpage.darkmode.enabled = true;
       downloads.location.directory = "~/Downloads";
-      url.start_pages = "home.local:8080";
+      url.start_pages = "192.168.0.70:8080";
       zoom.default = "100%";
     };
   };

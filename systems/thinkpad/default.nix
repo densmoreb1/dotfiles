@@ -33,6 +33,9 @@
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
   security.pam.services.login.fprintAuth = true;
 
+  # Twingate
+  services.twingate.enable = true;
+
   # Xbox controller
   hardware.xone.enable = true;
 
