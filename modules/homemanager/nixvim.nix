@@ -5,7 +5,9 @@
     # formatters
     alejandra
     black
-    nodePackages.prettier
+    jq
+    yq
+    mdformat
   ];
 
   programs.nixvim = {
@@ -141,11 +143,11 @@
         enable = true;
         settings = {
           formatters_by_ft = {
-            json = ["prettier"];
-            markdown = ["prettier"];
+            json = ["jq"];
+            markdown = ["mdformat"];
             nix = ["alejandra"];
             python = ["black"];
-            yaml = ["prettier"];
+            yaml = ["yq"];
           };
           format_on_save = {
             timeout_ms = 5000;
