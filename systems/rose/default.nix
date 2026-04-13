@@ -3,6 +3,7 @@
   jovian,
   lib,
   modulesPath,
+  pkgs,
   username,
   ...
 }: {
@@ -36,6 +37,10 @@
     steam.user = username;
     hardware.has.amd.gpu = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    pkgs.prismlauncher
+  ];
 
   # Enable Docker
   virtualisation.docker.enable = true;
