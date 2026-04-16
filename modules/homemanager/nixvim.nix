@@ -149,6 +149,18 @@
             python = ["black"];
             yaml = ["yq"];
           };
+          formatters = {
+            jq = {
+              command = "jq";
+              args = ["."];
+            };
+
+            yq = {
+              command = "yq";
+              args = ["." "--yml-output"];
+            };
+          };
+
           format_on_save = {
             timeout_ms = 5000;
             lsp_format = "fallback";
