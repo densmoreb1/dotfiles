@@ -65,11 +65,11 @@
   boot.initrd.luks.devices."cryptmedia1".device = "/dev/disk/by-uuid/d8122567-0284-4989-8402-4d36a358f75d";
 
   fileSystems."/mnt/media2" = {
-    device = "/dev/disk/by-uuid/ac1168df-4e9c-4cf7-8d83-dcee9f73910f";
+    device = "/dev/disk/by-uuid/b4a1e533-812f-4c54-8f53-590811536442";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."cryptmedia2".device = "/dev/disk/by-uuid/548def7c-1f1a-47d5-8548-d9530a305f16";
+  boot.initrd.luks.devices."cryptmedia2".device = "/dev/disk/by-uuid/429508c1-d8a1-4385-b77b-6db7781add70";
 
   fileSystems."/media" = {
     device = "/mnt/media1:/mnt/media2:/mnt/mediaroot";
