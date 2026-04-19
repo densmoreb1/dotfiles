@@ -5,8 +5,7 @@
     # formatters
     alejandra
     black
-    jq
-    yq
+    yq-go
     mdformat
   ];
 
@@ -143,21 +142,15 @@
         enable = true;
         settings = {
           formatters_by_ft = {
-            json = ["jq"];
             markdown = ["mdformat"];
             nix = ["alejandra"];
             python = ["black"];
             yaml = ["yq"];
           };
           formatters = {
-            jq = {
-              command = "jq";
-              args = ["."];
-            };
-
             yq = {
               command = "yq";
-              args = ["." "--yml-output"];
+              args = ["."];
             };
           };
 
