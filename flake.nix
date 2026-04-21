@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +31,6 @@
     home-manager,
     nixvim,
     sops-nix,
-    jovian,
     stylix,
     nixos-hardware,
     ...
@@ -73,7 +67,7 @@
 
       rose = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit jovian username;};
+        specialArgs = {inherit username;};
         modules = [
           ./systems/rose
           home-manager.nixosModules.home-manager

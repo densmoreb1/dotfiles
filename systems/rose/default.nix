@@ -1,15 +1,10 @@
 {
   config,
-  jovian,
   lib,
-  modulesPath,
   pkgs,
-  username,
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    jovian.nixosModules.default
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/mail.nix
     ../../modules/desktop/remove-cookies.nix
@@ -32,11 +27,7 @@
   };
 
   # Steam
-  jovian = {
-    steam.enable = true;
-    steam.user = username;
-    hardware.has.amd.gpu = true;
-  };
+  programs.steam.enable = true;
 
   environment.systemPackages = with pkgs; [
     prismlauncher
@@ -49,7 +40,7 @@
 
   # Hardware
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
@@ -70,6 +61,6 @@
 
   networking.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
