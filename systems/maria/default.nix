@@ -2,17 +2,13 @@
   config,
   lib,
   pkgs,
-  modulesPath,
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/system/default.nix
   ];
 
   networking.hostName = "maria";
-
-  systemd.tpm2.enable = false;
 
   virtualisation.docker.enable = true;
 

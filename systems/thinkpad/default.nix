@@ -1,12 +1,10 @@
 {
   config,
   lib,
-  modulesPath,
   pkgs,
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/mail.nix
     ../../modules/desktop/remove-cookies.nix
