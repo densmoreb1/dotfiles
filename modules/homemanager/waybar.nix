@@ -7,7 +7,6 @@
         layer = "top";
         position = "bottom";
         spacing = 0;
-        height = 26;
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = [
@@ -107,68 +106,20 @@
       };
     };
     style = ''
-      @define-color foreground #cdd6f4;
-      @define-color background #1a1b26;
       * {
-        background-color: @background;
-        color: @foreground;
-
-        border: none;
-        border-radius: 0;
-        min-height: 0;
         font-family: 'JetbrainsMono Nerd Font';
         font-size: 18px;
-        font-weight: 400;
       }
 
-      .modules-left {
-        margin-left: 8px;
+      #wireplumber,
+      #pulseaudio,
+      #sndio {
+        padding: 0 10px;
       }
-
-      .modules-right {
-        margin-right: 8px;
-      }
-
-      #workspaces button {
-        all: initial;
-        padding: 0 6px;
-        margin: 0 1.5px;
-        min-width: 9px;
-      }
-
-      #workspaces button.empty {
-        opacity: 0.5;
-      }
-
-      #cpu,
-      #battery,
-      #pulseaudio {
-        min-width: 12px;
-        margin: 0 7.5px;
-      }
-
-      #tray {
-        margin-right: 16px;
-      }
-
-      #bluetooth {
-        margin-right: 17px;
-      }
-
-      #network {
-        margin-right: 13px;
-      }
-
-      tooltip {
-        padding: 2px;
-      }
-
-      #clock {
-        margin-left: 8.75px;
-      }
-
-      .hidden {
-        opacity: 0;
+      #wireplumber.muted,
+      #pulseaudio.muted,
+      #sndio.muted {
+        padding: 0 10px;
       }
     '';
   };
