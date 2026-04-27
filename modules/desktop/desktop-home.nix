@@ -18,6 +18,7 @@
     ../homemanager/alacritty.nix
     ../homemanager/mako.nix
     ../homemanager/mangohud.nix
+    ../homemanager/waybar.nix
     ../homemanager/wofi.nix
     ../homemanager/qutebrowser.nix
   ];
@@ -25,10 +26,6 @@
   # Symlinks
   xdg.configFile."hypr" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
-    recursive = true;
-  };
-  xdg.configFile."waybar" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/waybar";
     recursive = true;
   };
 }
