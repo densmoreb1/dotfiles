@@ -14,6 +14,7 @@
     brightnessctl
     heroic
     hyprpaper
+    firefox
     libnotify # notifications
     localsend
     python313
