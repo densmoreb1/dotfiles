@@ -7,7 +7,6 @@
   imports = [
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/mail.nix
-    ../../modules/desktop/remove-cookies.nix
     ../../modules/system/bluetooth.nix
     ../../modules/system/default.nix
     ../../modules/system/style.nix

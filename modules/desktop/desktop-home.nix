@@ -20,7 +20,6 @@
     ../homemanager/mangohud.nix
     ../homemanager/waybar.nix
     ../homemanager/wofi.nix
-    ../homemanager/qutebrowser.nix
   ];
 
   # Symlinks
