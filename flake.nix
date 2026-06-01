@@ -24,6 +24,11 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -33,6 +38,7 @@
     sops-nix,
     stylix,
     nixos-hardware,
+    zen-browser,
     ...
   }: let
     username = "brandon";
@@ -40,7 +46,7 @@
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit username;};
+        specialArgs = {inherit username zen-browser;};
         modules = [
           ./systems/thinkpad
           home-manager.nixosModules.home-manager
@@ -67,7 +73,7 @@
 
       rose = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit username;};
+        specialArgs = {inherit username zen-browser;};
         modules = [
           ./systems/rose
           home-manager.nixosModules.home-manager

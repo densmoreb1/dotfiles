@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  zen-browser,
+  ...
+}: {
   # Login
   services.displayManager.ly.enable = true;
 
@@ -14,7 +18,6 @@
     brightnessctl
     heroic
     hyprpaper
-    firefox
     libnotify # notifications
     localsend
     python313
@@ -23,6 +26,7 @@
     waybar
     wl-clipboard
     wofi # app launcher
+    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Pass password manager
     gnupg
