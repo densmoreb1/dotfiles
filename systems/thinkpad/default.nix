@@ -59,7 +59,9 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
+  boot.kernelParams = ["acpi_backlight=native"];
   boot.extraModulePackages = [];
+  services.fstrim.enable = lib.mkDefault true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/469f1b05-3c7b-41bf-8e11-697e29149272";

@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,7 +36,6 @@
     nixvim,
     sops-nix,
     stylix,
-    nixos-hardware,
     zen-browser,
     ...
   }: let
@@ -50,7 +48,6 @@
         modules = [
           ./systems/thinkpad
           home-manager.nixosModules.home-manager
-          nixos-hardware.nixosModules.lenovo-thinkpad-p1
           sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
           {
