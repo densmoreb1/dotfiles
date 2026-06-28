@@ -4,8 +4,9 @@
   ...
 }: {
   imports = [
-    ../../modules/system/default.nix
     ../../modules/system/bluetooth.nix
+    ../../modules/system/ddclient.nix
+    ../../modules/system/default.nix
   ];
 
   networking.hostName = "pipboy";
