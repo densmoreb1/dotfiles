@@ -20,6 +20,7 @@
     ../homemanager/mangohud.nix
     ../homemanager/waybar.nix
     ../homemanager/wofi.nix
+    ../homemanager/zen.nix
   ];
 
   # Symlinks

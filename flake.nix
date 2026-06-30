@@ -25,8 +25,11 @@
     };
 
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
   };
 
@@ -44,7 +47,7 @@
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit username zen-browser;};
+        specialArgs = {inherit username;};
         modules = [
           ./systems/thinkpad
           home-manager.nixosModules.home-manager
@@ -62,6 +65,7 @@
                 ./modules/desktop/desktop-home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
+                zen-browser.homeModules.beta
               ];
             };
           }
@@ -70,7 +74,7 @@
 
       rose = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit username zen-browser;};
+        specialArgs = {inherit username;};
         modules = [
           ./systems/rose
           home-manager.nixosModules.home-manager
@@ -88,6 +92,7 @@
                 ./modules/desktop/desktop-home.nix
                 nixvim.homeModules.nixvim
                 sops-nix.homeManagerModules.sops
+                zen-browser.homeModules.beta
               ];
             };
           }

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  zen-browser,
-  ...
-}: {
+{pkgs, ...}: {
   # Login
   services.displayManager.ly.enable = true;
 
@@ -26,7 +22,6 @@
     waybar
     wl-clipboard
     wofi # app launcher
-    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Pass password manager
     gnupg
