@@ -37,6 +37,12 @@
         key = "gd";
         mode = "n";
       }
+      {
+        action = "<cmd>VimwikiMakeDiaryNote<CR>";
+        key = "<leader>nd";
+        mode = "n";
+        options.desc = "Today's diary";
+      }
     ];
 
     opts = {
@@ -71,6 +77,20 @@
     '';
 
     plugins = {
+      # wiki notes
+      vimwiki = {
+        enable = true;
+        settings = {
+          list = [
+            {
+              ext = ".md";
+              path = "~/notes";
+              syntax = "markdown";
+            }
+          ];
+        };
+      };
+
       # status line
       lualine.enable = true;
 
@@ -145,6 +165,7 @@
             markdown = ["mdformat"];
             nix = ["alejandra"];
             python = ["black"];
+            vimwiki = ["mdformat"];
             yaml = ["yq"];
           };
           formatters = {
