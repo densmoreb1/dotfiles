@@ -4,7 +4,7 @@
     setAsDefaultBrowser = true;
   };
 
-  stylix.targets.zen-browser.profileNames = ["default"];
+  stylix.targets.zen-browser.enable = false;
 
   programs.zen-browser = {
     profiles.default = {
