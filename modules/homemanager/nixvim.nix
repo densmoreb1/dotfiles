@@ -35,12 +35,18 @@
       {
         action = "<cmd>lua vim.lsp.buf.definition()<CR>";
         key = "gd";
-        mode = "n";
+        mode = ["n"];
       }
       {
         action = "<cmd>VimwikiMakeDiaryNote<CR>";
         key = "<leader>nd";
-        mode = "n";
+        mode = ["n"];
+        options.desc = "Today's diary";
+      }
+      {
+        action = "vim.lsp.buf.signature_help";
+        key = "<C-k>";
+        mode = ["n"];
         options.desc = "Today's diary";
       }
     ];
@@ -189,6 +195,7 @@
         settings = {
           sources = [
             {name = "nvim_lsp";}
+            {name = "nvim_lsp_signature_help";}
             {name = "buffer";}
             {name = "path";}
           ];
