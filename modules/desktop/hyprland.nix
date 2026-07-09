@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     bibata-cursors
     brightnessctl
+    claude-code
     heroic
     hyprpaper
     libnotify # notifications
