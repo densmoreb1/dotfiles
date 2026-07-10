@@ -9,10 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Nixvim pins its own tested nixpkgs; don't force `follows` (upstream
+    # recommendation) so the editor stays on a known-compatible package set.
+    nixvim.url = "github:nix-community/nixvim";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -69,7 +68,7 @@
                 sops-nix.homeManagerModules.sops
               ]
               ++ nixpkgs.lib.optionals desktop [
-                ./modules/desktop/desktop-home.nix
+                ./modules/homemanager/desktop.nix
                 zen-browser.homeModules.beta
               ];
           }

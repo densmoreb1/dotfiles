@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/desktop/hyprland.nix
-    ../../modules/desktop/mail.nix
+    ../../modules/system/hyprland.nix
+    ../../modules/system/mail.nix
     ../../modules/system/bluetooth.nix
     ../../modules/system/default.nix
     ../../modules/system/style.nix
@@ -29,12 +29,6 @@
   # Twingate
   services.twingate.enable = true;
 
-  # Xbox controller
-  hardware.xone.enable = true;
-
-  # Steam
-  programs.steam.enable = true;
-
   # Enable TLP
   services.tlp = {
     enable = true;
@@ -45,9 +39,6 @@
       CPU_BOOST_ON_AC = 1;
     };
   };
-
-  # Enable Docker
-  virtualisation.docker.enable = true;
 
   system.stateVersion = "24.11";
 

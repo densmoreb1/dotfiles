@@ -15,12 +15,12 @@
   };
 
   imports = [
-    ../homemanager/alacritty.nix
-    ../homemanager/mako.nix
-    ../homemanager/mangohud.nix
-    ../homemanager/waybar.nix
-    ../homemanager/wofi.nix
-    ../homemanager/zen.nix
+    ./alacritty.nix
+    ./mako.nix
+    ./mangohud.nix
+    ./waybar.nix
+    ./wofi.nix
+    ./zen.nix
   ];
 
   # Symlinks

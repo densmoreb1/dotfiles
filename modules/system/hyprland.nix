@@ -8,6 +8,10 @@
     xwayland.enable = true;
   };
 
+  # Gaming
+  programs.steam.enable = true;
+  hardware.xone.enable = true; # Xbox controller
+
   # Packages
   environment.systemPackages = with pkgs; [
     bibata-cursors

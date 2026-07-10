@@ -27,6 +27,9 @@
   # Power saving
   services.tlp.enable = true;
 
+  # Containers
+  virtualisation.docker.enable = true;
+
   # SSH
   services.openssh = {
     enable = true;
