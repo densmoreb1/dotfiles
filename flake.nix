@@ -43,111 +43,50 @@
     ...
   }: let
     username = "brandon";
+
+    # Build a NixOS configuration for one host. Set `desktop = true` to pull in
+    # the Hyprland/desktop home-manager modules; headless hosts leave it off.
+    mkSystem = {
+      host,
+      desktop ? false,
+    }:
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit username;};
+        modules = [
+          ./systems/${host}
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
+          stylix.nixosModules.stylix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit username;};
+            home-manager.users.${username}.imports =
+              [
+                ./modules/homemanager/default.nix
+                nixvim.homeModules.nixvim
+                sops-nix.homeManagerModules.sops
+              ]
+              ++ nixpkgs.lib.optionals desktop [
+                ./modules/desktop/desktop-home.nix
+                zen-browser.homeModules.beta
+              ];
+          }
+        ];
+      };
   in {
     nixosConfigurations = {
-      thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit username;};
-        modules = [
-          ./systems/thinkpad
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit username;
-            };
-            home-manager.users.${username} = {
-              imports = [
-                ./modules/homemanager/default.nix
-                ./modules/desktop/desktop-home.nix
-                nixvim.homeModules.nixvim
-                sops-nix.homeManagerModules.sops
-                zen-browser.homeModules.beta
-              ];
-            };
-          }
-        ];
+      thinkpad = mkSystem {
+        host = "thinkpad";
+        desktop = true;
       };
-
-      rose = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit username;};
-        modules = [
-          ./systems/rose
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit username;
-            };
-            home-manager.users.${username} = {
-              imports = [
-                ./modules/homemanager/default.nix
-                ./modules/desktop/desktop-home.nix
-                nixvim.homeModules.nixvim
-                sops-nix.homeManagerModules.sops
-                zen-browser.homeModules.beta
-              ];
-            };
-          }
-        ];
+      rose = mkSystem {
+        host = "rose";
+        desktop = true;
       };
-
-      maria = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit username;};
-        modules = [
-          ./systems/maria
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit username;
-            };
-            home-manager.users.${username} = {
-              imports = [
-                ./modules/homemanager/default.nix
-                nixvim.homeModules.nixvim
-                sops-nix.homeManagerModules.sops
-              ];
-            };
-          }
-        ];
-      };
-
-      pipboy = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit username;};
-        modules = [
-          ./systems/pipboy
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit username;
-            };
-            home-manager.users.${username} = {
-              imports = [
-                ./modules/homemanager/default.nix
-                nixvim.homeModules.nixvim
-                sops-nix.homeManagerModules.sops
-              ];
-            };
-          }
-        ];
-      };
+      maria = mkSystem {host = "maria";};
+      pipboy = mkSystem {host = "pipboy";};
     };
   };
 }
