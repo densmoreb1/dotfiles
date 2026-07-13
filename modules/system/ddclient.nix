@@ -7,7 +7,7 @@ in {
     protocol = "cloudflare";
     username = "token";
     passwordFile = "/home/${username}/cloudflare_api.txt";
-    domains = [ddclient-config.domain];
+    domains = [ddclient-config.domain "*.${ddclient-config.domain}"];
     zone = ddclient-config.domain;
     ssl = true;
   };
