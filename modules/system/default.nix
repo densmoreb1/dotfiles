@@ -61,6 +61,8 @@
     dust
     fish
     git
+    mdadm
+    smartmontools
     sops
     starship
     tree
