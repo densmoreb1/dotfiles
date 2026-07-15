@@ -24,9 +24,6 @@
   # Firewall
   networking.firewall.enable = false;
 
-  # Power saving
-  services.tlp.enable = true;
-
   # Containers
   virtualisation.docker.enable = true;
 

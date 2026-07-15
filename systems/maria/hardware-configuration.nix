@@ -21,8 +21,19 @@
   boot.initrd.luks.devices."cryptmedia2".device = "/dev/disk/by-uuid/429508c1-d8a1-4385-b77b-6db7781add70";
   boot.initrd.luks.devices."cryptmedia3".device = "/dev/disk/by-uuid/548def7c-1f1a-47d5-8548-d9530a305f16";
 
+  boot.swraid = {
+    enable = true;
+    mdadmConf = "ARRAY /dev/md0 metadata=1.2 UUID=f6d83731:c69c6cbc:668333c7:7aac033e";
+  };
+  boot.initrd.luks.devices."cryptmediaraid".device = "/dev/disk/by-uuid/c557383b-ccb2-4ff0-8f93-55a51872d924";
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/47deaee9-9beb-4a16-b070-45f3cc76783f";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/mediaraid1" = {
+    device = "/dev/disk/by-uuid/aea0555d-7cee-401d-b173-0fbb85b8d83d";
     fsType = "ext4";
   };
 
@@ -42,7 +53,7 @@
   };
 
   fileSystems."/media" = {
-    device = "/mnt/media1:/mnt/media2:/mnt/media3";
+    device = "/mnt/media1:/mnt/mediaraid1:/mnt/media3";
     fsType = "fuse.mergerfs";
     options = [
       "defaults"
