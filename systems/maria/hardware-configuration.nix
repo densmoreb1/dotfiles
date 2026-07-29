@@ -17,7 +17,6 @@
   };
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/57cfeea5-2c36-4ce5-9ae6-a9c90bb07fa8";
-  boot.initrd.luks.devices."cryptmedia1".device = "/dev/disk/by-uuid/d8122567-0284-4989-8402-4d36a358f75d";
 
   boot.swraid = {
     enable = true;
@@ -38,13 +37,8 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/media1" = {
-    device = "/dev/disk/by-uuid/ee6a2939-61b3-43a1-9cd7-ced460c91f2b";
-    fsType = "ext4";
-  };
-
   fileSystems."/media" = {
-    device = "/mnt/media1:/mnt/mediaraid1";
+    device = "/mnt/mediaraid1";
     fsType = "fuse.mergerfs";
     options = [
       "defaults"
