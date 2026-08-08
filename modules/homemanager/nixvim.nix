@@ -5,8 +5,9 @@
     # formatters
     alejandra
     black
-    yq-go
     mdformat
+    stylua
+    yq-go
   ];
 
   programs.nixvim = {
@@ -168,6 +169,7 @@
         enable = true;
         settings = {
           formatters_by_ft = {
+            lua = ["stylua"];
             markdown = ["mdformat"];
             nix = ["alejandra"];
             python = ["black"];
@@ -178,6 +180,10 @@
             yq = {
               command = "yq";
               args = ["."];
+            };
+            stylua = {
+              command = "stylua";
+              args = ["--indent-type" "Spaces" "-"];
             };
           };
 
