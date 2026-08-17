@@ -1,119 +1,93 @@
-# Edge router: NAT, firewall, and DHCP. IPv4 only.
-# DNS is served by the Pi-hole container, not by this config -- dnsmasq runs
-# with port=0 so the two don't fight over :53.
-#
-# NOT imported yet. Fill in the two MAC addresses below, then add
-# ../../modules/system/router.nix to systems/pipboy/default.nix. Deploying
-# with the placeholder MACs will leave the host with no working network.
-{lib, ...}: let
-  wanIf = "wan";
-  lanIf = "lan";
-
-  # From `ip -br link` once the NIC is installed.
-  wanMac = "00:00:00:00:00:00";
-  lanMac = "b8:85:84:a6:4a:46";
-
-  # Existing subnet, so statically-addressed hosts keep working.
-  # The old router becomes an AP at .2.
-  lanAddr = "192.168.50.1";
-  lanPrefix = 24;
-in {
-  # Pin interface names by MAC. Adding a PCIe card shifts the enp* names
-  # around, and guessing wrong here puts the LAN on the public port.
-  # .link files are applied by udev, so this works without networkd.
+{lib, ...}: {
+  # Give the two network ports permanent names, so they can't swap identities
   systemd.network.links = {
+    # The onboard port, matched by its hardware address, becomes "wan" -- the side facing the internet.
     "10-wan" = {
-      matchConfig.PermanentMACAddress = wanMac;
-      linkConfig.Name = wanIf;
+      matchConfig.PermanentMACAddress = "b8:85:84:a6:4a:46";
+      linkConfig.Name = "wan";
     };
+
+    # The PCIe card's first port becomes "lan" -- the side facing the house. TODO: fill in its hardware address.
     "10-lan" = {
-      matchConfig.PermanentMACAddress = lanMac;
-      linkConfig.Name = lanIf;
+      matchConfig.PermanentMACAddress = "";
+      linkConfig.Name = "lan";
     };
   };
 
   networking = {
-    # ./default.nix turns the firewall off and NetworkManager on. Neither is
-    # survivable on a host with a public interface.
+    # Turn the firewall on
     firewall.enable = lib.mkForce true;
+
+    # Turn off the automatic network manager so it can't wander in and override the fixed settings below.
     networkmanager.enable = lib.mkForce false;
 
+    # Don't let every port grab an address on its own; each one is configured deliberately below.
     useDHCP = false;
-    interfaces.${wanIf}.useDHCP = true;
-    interfaces.${lanIf}.ipv4.addresses = [
+
+    # The internet-facing port asks the ISP for an address, the same way any normal device would.
+    interfaces.wan.useDHCP = true;
+
+    interfaces.lan.ipv4.addresses = [
       {
-        address = lanAddr;
-        prefixLength = lanPrefix;
+        address = "192.168.50.1";
+        prefixLength = 24;
       }
     ];
 
+    # Share one internet connection among every device in the house -- this translation is the core job of a router.
     nat = {
       enable = true;
-      externalInterface = wanIf;
-      internalInterfaces = [lanIf];
+      externalInterface = "wan";
+      internalInterfaces = ["lan"];
     };
 
-    # Everything inbound on the LAN is allowed; the WAN keeps its default
-    # deny. This is what keeps SSH private -- see openssh.openFirewall below.
-    firewall.trustedInterfaces = [lanIf];
+    # Devices inside the house may reach services running on the router; the internet side stays closed unless something explicitly opens it.
+    firewall.trustedInterfaces = ["lan"];
 
-    # Upstream on purpose, NOT Pi-hole. If the router resolved through its own
-    # container, a container that is broken or not yet pulled would leave
-    # nixos-rebuild unable to fetch the fix. Clients still use Pi-hole.
+    # The base OS will use these DNS
     nameservers = ["1.1.1.1" "9.9.9.9"];
   };
 
-  # No IPv6 forwarding is enabled, so the LAN has no v6 path out and there is
-  # no unfiltered v6 to worry about. The router's own WAN v6 address, if the
-  # ISP hands one out, is covered by the firewall's default deny.
-
+  # Records stats
   services.vnstat.enable = true;
 
-  # DHCP only. Pi-hole owns DNS.
+  # Hands out addresses to devices as they join the network.
   services.dnsmasq = {
     enable = true;
 
-    # Would otherwise point this host at 127.0.0.1, where nothing listens now
-    # that dnsmasq serves no DNS. networking.nameservers above replaces it.
+    # Don't point this machine at itself for name lookups -- it no longer answers them.
     resolveLocalQueries = false;
 
     settings = {
-      # dnsmasq's built-in way to run as a pure DHCP server. Frees :53 for the
-      # Pi-hole container, which is itself dnsmasq and would otherwise clash.
+      # Switch off this program's name-lookup half. Pi-hole does that job
       port = 0;
 
-      # LAN only, never the WAN. bind-dynamic avoids failing at boot if the
-      # interface isn't up yet.
-      interface = [lanIf];
+      # Only offer addresses to the house side. Never answer a stranger on the internet.
+      interface = ["lan"];
+      # Start up gracefully even if the network port isn't ready yet at boot.
       bind-dynamic = true;
 
+      # The pool of addresses given out, each valid for a day before it needs renewing.
       dhcp-range = ["192.168.50.100,192.168.50.240,24h"];
+
+      # Resolve.conf
       dhcp-option = [
-        "option:router,${lanAddr}"
-        # Pi-hole, via its published port on the LAN address.
-        "option:dns-server,${lanAddr}"
+        "option:router,192.168.50.1"
+        "option:dns-server,192.168.50.1"
       ];
     };
   };
 
+  # Turn off systemd's own name-lookup service so nothing competes for port 53.
   services.resolved.enable = false;
 
-  # ./default.nix sets openssh to port 6977. openFirewall defaults to true,
-  # which would open that port on every interface including the WAN.
-  # trustedInterfaces above still allows SSH from the LAN.
+  # Stop SSH from opening itself to the internet. The trusted-interface rule above still lets you in from inside the house.
   services.openssh.openFirewall = false;
 
-  # Docker writes its DNAT rules ahead of networking.firewall, so a published
-  # port lands on the WAN and the firewall does not stop it. This makes the
-  # LAN address the default bind, so `-p 8080:8080` stays internal.
-  # Containers using --network host are ordinary host sockets and are already
-  # covered by the firewall above.
-  #
-  # userland-proxy=false forces published ports through real DNAT, which
-  # preserves the client's source address. Without it Pi-hole can log every
-  # query as coming from the docker bridge gateway, losing per-client stats.
   virtualisation.docker.daemon.settings = {
-    ip = lanAddr;
+    # A container publishing a port lands on the house network only. Docker sidesteps the firewall entirely, so this is the setting doing the protecting.
+    ip = "192.168.50.1";
+    # Keep the real device's address visible to containers, so Pi-hole can report which device made each request instead of lumping them together.
     userland-proxy = false;
   };
 }
