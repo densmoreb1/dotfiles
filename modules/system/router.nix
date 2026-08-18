@@ -1,13 +1,14 @@
-{lib, ...}: {
+{lib, ...}: let
+  routerAddress = "192.168.50.1";
+  subnet = "50";
+in {
   # Give the two network ports permanent names, so they can't swap identities
   systemd.network.links = {
-    # The onboard port, matched by its hardware address, becomes "wan" -- the side facing the internet.
     "10-wan" = {
       matchConfig.PermanentMACAddress = "b8:85:84:a6:4a:46";
       linkConfig.Name = "wan";
     };
 
-    # The PCIe card's first port becomes "lan" -- the side facing the house. TODO: fill in its hardware address.
     "10-lan" = {
       matchConfig.PermanentMACAddress = "";
       linkConfig.Name = "lan";
@@ -29,7 +30,7 @@
 
     interfaces.lan.ipv4.addresses = [
       {
-        address = "192.168.50.1";
+        address = "${routerAddress}";
         prefixLength = 24;
       }
     ];
@@ -45,7 +46,7 @@
     firewall.trustedInterfaces = ["lan"];
 
     # The base OS will use these DNS
-    nameservers = ["1.1.1.1" "9.9.9.9"];
+    nameservers = ["9.9.9.9" "1.1.1.1"];
   };
 
   # Records stats
@@ -67,13 +68,16 @@
       # Start up gracefully even if the network port isn't ready yet at boot.
       bind-dynamic = true;
 
-      # The pool of addresses given out, each valid for a day before it needs renewing.
-      dhcp-range = ["192.168.50.100,192.168.50.240,24h"];
+      # Range of IP
+      dhcp-range = ["192.168.${subnet}.2,192.168.${subnet}.253,24h"];
 
-      # Resolve.conf
+      # Reservations
+      dhcp-host = ["60:cf:84:64:bd:59,192.168.${subnet}.216,maria" "3c:7c:3f:21:ab:35,192.168.${subnet}.66,rose" "8c:90:2d:ea:e7:99,192.168.${subnet}.119,c200"];
+
+      # Resolv.conf
       dhcp-option = [
-        "option:router,192.168.50.1"
-        "option:dns-server,192.168.50.1"
+        "option:router,${routerAddress}"
+        "option:dns-server,${routerAddress}"
       ];
     };
   };
@@ -86,7 +90,7 @@
 
   virtualisation.docker.daemon.settings = {
     # A container publishing a port lands on the house network only. Docker sidesteps the firewall entirely, so this is the setting doing the protecting.
-    ip = "192.168.50.1";
+    ip = "${routerAddress}";
     # Keep the real device's address visible to containers, so Pi-hole can report which device made each request instead of lumping them together.
     userland-proxy = false;
   };
