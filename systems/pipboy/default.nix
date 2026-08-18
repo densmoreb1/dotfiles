@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system/bluetooth.nix
+    ../../modules/system/router.nix
     ../../modules/system/ddclient.nix
     ../../modules/system/default.nix
   ];

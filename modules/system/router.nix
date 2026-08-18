@@ -1,6 +1,6 @@
 {lib, ...}: let
-  routerAddress = "192.168.50.1";
-  subnet = "50";
+  routerAddress = "192.168.0.1";
+  subnet = "0";
 in {
   # Give the two network ports permanent names, so they can't swap identities
   systemd.network.links = {
@@ -10,7 +10,7 @@ in {
     };
 
     "10-lan" = {
-      matchConfig.PermanentMACAddress = "";
+      matchConfig.PermanentMACAddress = "c4:62:37:0f:6c:8b";
       linkConfig.Name = "lan";
     };
   };
