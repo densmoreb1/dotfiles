@@ -40,6 +40,13 @@ in {
       enable = true;
       externalInterface = "wan";
       internalInterfaces = ["lan"];
+      forwardPorts = [
+        {
+          sourcePort = 32400;
+          proto = "tcp";
+          destination = "192.168.${subnet}.216:32400";
+        }
+      ];
     };
 
     # Devices inside the house may reach services running on the router; the internet side stays closed unless something explicitly opens it.
