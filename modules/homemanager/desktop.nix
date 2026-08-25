@@ -1,8 +1,4 @@
-{
-  config,
-  username,
-  ...
-}: {
+{username, ...}: {
   sops = {
     secrets."pipboy_private_key" = {
       path = "/home/${username}/.ssh/pipboy";
@@ -14,18 +10,17 @@
     };
   };
 
+  # Everything under .config/hypr is now Nix-generated: hyprland.lua by
+  # ./hyprland.nix, hyprpaper.conf by ./hyprpaper.nix (via the stylix
+  # hyprpaper target) -- no manual symlinks needed here anymore.
   imports = [
     ./alacritty.nix
+    ./hyprland.nix
+    ./hyprpaper.nix
     ./mako.nix
     ./mangohud.nix
     ./waybar.nix
     ./wofi.nix
     ./zen.nix
   ];
-
-  # Symlinks
-  xdg.configFile."hypr" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/hypr";
-    recursive = true;
-  };
 }
