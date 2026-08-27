@@ -19,6 +19,7 @@
     ./git.nix
     ./nixvim.nix
     ./starship.nix
+    ./vivid.nix
   ];
 
   sops = {

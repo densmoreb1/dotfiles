@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -8,15 +8,11 @@
       "ip" = "ip --color=auto";
       "gsp" = "git stash; git pull; git stash pop";
     };
-    shellInit = ''
-      function starship_transient_prompt_func
-        starship module character
-      end
-
+    functions.starship_transient_prompt_func = "starship module character";
+    interactiveShellInit = lib.mkAfter ''
       set -g fish_key_bindings fish_vi_key_bindings
       set fish_greeting
 
-      starship init fish | source
       enable_transience
     '';
   };
