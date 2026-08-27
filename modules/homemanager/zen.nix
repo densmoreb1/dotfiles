@@ -29,6 +29,7 @@
       };
       settings = {
         "browser.contentblocking.category" = "strict";
+        "zen.glance.enabled" = false;
         "zen.urlbar.behavior" = "float";
         "zen.view.compact.hide-tabbar" = true;
         "zen.workspaces.continue-where-left-off" = true;
