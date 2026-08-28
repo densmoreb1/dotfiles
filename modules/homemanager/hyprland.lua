@@ -194,6 +194,10 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
 -- Switch workspaces with mainMod + [0-9]
@@ -237,6 +241,7 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("alacritty -e btop"))
+hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("alacritty -e bluetoothctl"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("wofi-pass"))
@@ -280,3 +285,86 @@ hl.window_rule({
 
     no_focus = true,
 })
+
+-------------------------
+---- WAYBAR AUTOHIDE ----
+-------------------------
+
+-- Waybar starts unmapped (start_hidden in waybar.nix) and is shown/hidden with
+-- SIGUSR1/SIGUSR2. The layer rule makes Hyprland slide it out from under the
+-- bottom edge instead of fading it. Note the NixOS wrapper renames the process
+-- to .waybar-wrapped, so pkill has to match on a substring, not `-x waybar`.
+
+local bar = {
+    namespace = "waybar",
+    hotzone = 2, -- px of bottom screen edge that reveals the bar
+    grace = 8, -- px above the bar the cursor may stray before it hides again
+    poll = 100, -- ms between cursor checks
+    height = 48, -- fallback height, used while the bar is still mapping
+    shown = false,
+    pinned = false,
+}
+
+hl.layer_rule({
+    name = "waybar-slide",
+    match = { namespace = bar.namespace },
+    animation = "slide",
+})
+
+local function bar_show()
+    if bar.shown then
+        return
+    end
+    bar.shown = true
+    hl.exec_cmd("pkill -USR1 " .. bar.namespace)
+end
+
+local function bar_hide()
+    if not bar.shown then
+        return
+    end
+    bar.shown = false
+    hl.exec_cmd("pkill -USR2 " .. bar.namespace)
+end
+
+-- The bar's own surface, so the cursor can rest on it without dismissing it.
+local function bar_surface(monitor)
+    for _, layer in ipairs(hl.get_layers({ namespace = bar.namespace })) do
+        if layer.monitor and layer.monitor.id == monitor.id then
+            return layer
+        end
+    end
+end
+
+bar.timer = hl.timer(function()
+    if bar.pinned then
+        return
+    end
+
+    local cursor = hl.get_cursor_pos()
+    local monitor = cursor and hl.get_monitor_at(cursor)
+    if not monitor then
+        return
+    end
+
+    local bottom = monitor.y + monitor.height / monitor.scale
+    if cursor.y >= bottom - bar.hotzone then
+        bar_show()
+    elseif bar.shown then
+        local surface = bar_surface(monitor)
+        if surface then
+            bar.height = surface.h
+        end
+        if cursor.y < bottom - bar.height - bar.grace then
+            bar_hide()
+        end
+    end
+end, { timeout = bar.poll, type = "repeat" })
+
+-- Pin the bar open until the next press, for when the mouse isn't involved.
+hl.bind(mainMod .. " + SHIFT + B", function()
+    bar.pinned = not bar.pinned
+    if bar.pinned then
+        bar_show()
+    end
+end)
