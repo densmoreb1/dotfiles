@@ -28,24 +28,6 @@ hl.env("XCURSOR_SIZE", "20")
 hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
 
 -----------------------
------ PERMISSIONS -----
------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
-
--- hl.config({
---   ecosystem = {
---     enforce_permissions = true,
---   },
--- })
-
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
--- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
-
------------------------
 ---- LOOK AND FEEL ----
 -----------------------
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
@@ -240,6 +222,15 @@ hl.bind(
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("systemctl sleep"))
+hl.bind(
+    mainMod .. " + SHIFT + E",
+    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+)
+
+--------------------------------
+---- APPS ----
+--------------------------------
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("alacritty -e btop"))
 hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("alacritty -e bluetoothctl"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("wofi --show drun"))
@@ -247,12 +238,8 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("wofi-pass"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("alacritty"))
-hl.bind(
-    mainMod .. " + SHIFT + E",
-    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
-)
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("alacritty -e nvim"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("systemctl sleep"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
