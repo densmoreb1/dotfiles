@@ -23,7 +23,7 @@
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    defaultSopsFile = ../../secrets/ssh-keys.enc.yaml;
+    defaultSopsFile = ../../secrets/ssh-keys.yaml;
 
     secrets."ssh_config" = {
       path = "/home/${username}/.ssh/config";
