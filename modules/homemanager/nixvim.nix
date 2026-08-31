@@ -50,6 +50,12 @@
         mode = ["n"];
         options.desc = "Today's diary";
       }
+      {
+        action = "<cmd>lua require('mini.files').open()<CR>";
+        key = "<leader>e";
+        mode = ["n"];
+        options.desc = "Open file explorer";
+      }
     ];
 
     opts = {
@@ -80,7 +86,6 @@
 
     extraConfigLua = ''
       vim.opt.spelllang = { 'en_us' }
-      vim.cmd("let g:netrw_liststyle = 3")
     '';
 
     plugins = {
@@ -99,7 +104,7 @@
       };
 
       # status line
-      lualine.enable = true;
+      mini-statusline.enable = true;
 
       # Completion for all lsps
       cmp-nvim-lsp.enable = true;
@@ -111,13 +116,25 @@
       which-key.enable = true;
 
       # auto-close brackets/quotes
-      nvim-autopairs.enable = true;
+      mini-pairs.enable = true;
 
       # gcc / gc to toggle comments
-      comment.enable = true;
+      mini-comment.enable = true;
 
-      # required for telescope
-      web-devicons.enable = true;
+      # icons for telescope etc, emulates nvim-web-devicons
+      mini-icons = {
+        enable = true;
+        mockDevIcons = true;
+      };
+
+      # add/change/delete surrounding pairs (ys, cs, ds)
+      mini-surround.enable = true;
+
+      # better around/inside text objects
+      mini-ai.enable = true;
+
+      # file explorer, replaces netrw
+      mini-files.enable = true;
 
       markdown-preview = {
         enable = true;
