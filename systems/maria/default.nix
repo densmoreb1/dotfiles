@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system/default.nix
+    ../../modules/system/restic-backup.nix
   ];
 
   networking.hostName = "maria";
