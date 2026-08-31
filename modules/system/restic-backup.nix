@@ -28,8 +28,6 @@
 in {
   environment.systemPackages = [pkgs.restic];
 
-  sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-
   sops.secrets."restic-env" = {
     sopsFile = ../../secrets/restic-b2.yaml;
     key = "env";

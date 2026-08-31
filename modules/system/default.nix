@@ -15,6 +15,11 @@
   # Hardware updates
   services.fwupd.enable = true;
 
+  # Root can read this regardless of file permissions; it's the same age
+  # key home-manager already uses to decrypt secrets for this user, reused
+  # here for any system-level sops secrets (ddclient, restic, etc.).
+  sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+
   # Networking
   networking.networkmanager.enable = true;
 
