@@ -110,6 +110,12 @@
       # pop up for key maps
       which-key.enable = true;
 
+      # auto-close brackets/quotes
+      nvim-autopairs.enable = true;
+
+      # gcc / gc to toggle comments
+      comment.enable = true;
+
       # required for telescope
       web-devicons.enable = true;
 

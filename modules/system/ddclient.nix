@@ -8,10 +8,6 @@
     key = "api_key";
   };
 
-  # Mirrors what the ddclient module would otherwise generate from its
-  # typed options (services.ddclient.domains/zone/etc.) -- using a raw
-  # configFile instead lets the domain/API key come from sops placeholders
-  # rather than needing to be known at Nix eval time.
   sops.templates."ddclient.conf".content = ''
     cache=/var/lib/ddclient/ddclient.cache
     foreground=YES

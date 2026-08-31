@@ -231,15 +231,17 @@ hl.bind(
 --------------------------------
 ---- APPS ----
 --------------------------------
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("bluetoothctl connect 81:AD:F0:4E:3A:35"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("alacritty -e btop"))
-hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("alacritty -e bluetoothctl"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("alacritty --working-directory ~/dotfiles -e claude"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("wofi-pass"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("alacritty"))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("alacritty -e nvim"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("alacritty -e bluetoothctl"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("alacritty -e nvim"))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

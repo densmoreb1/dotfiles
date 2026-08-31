@@ -10,9 +10,6 @@
     };
   };
 
-  # Everything under .config/hypr is now Nix-generated: hyprland.lua by
-  # ./hyprland.nix, hyprpaper.conf by ./hyprpaper.nix (via the stylix
-  # hyprpaper target) -- no manual symlinks needed here anymore.
   imports = [
     ./alacritty.nix
     ./hyprland.nix
