@@ -7,20 +7,15 @@
         layer = "top";
         position = "bottom";
         spacing = 0;
-
-        # Autohide. The bar is unmapped at startup and slides in and out from
-        # under the bottom edge; the cursor hotzone and the SUPER+SHIFT+B pin
-        # that drive it live in hyprland.lua. No exclusive zone, so revealing
-        # the bar floats it over the windows instead of reflowing them.
-        exclusive = false;
-        start_hidden = true;
-        "on-sigusr1" = "show";
-        "on-sigusr2" = "hide";
-        modules-center = [
-          "hyprland/workspaces"
+        modules-left = ["hyprland/workspaces"];
+        modules-center = ["hyprland/window"];
+        modules-right = [
+          "bluetooth"
           "network"
           "pulseaudio"
+          "cpu"
           "battery"
+          "clock"
         ];
         "hyprland/workspaces" = {
           on-click = "activate";
@@ -38,6 +33,18 @@
             "9" = "9";
             active = "󱓻";
           };
+        };
+
+        cpu = {
+          interval = 5;
+          format = "󰍛";
+          on-click = "alacritty -e btop";
+        };
+
+        clock = {
+          format = "{:%Y-%m-%d %H:%M}";
+          format-alt = "{:L%d %B W%V}";
+          tooltip = false;
         };
 
         network = {
@@ -73,6 +80,14 @@
           };
         };
 
+        bluetooth = {
+          format = "";
+          format-disabled = "󰂲";
+          format-connected = "";
+          tooltip-format = "Devices connected: {num_connections}";
+          on-click = "alacritty -e bluetoothctl";
+        };
+
         pulseaudio = {
           format = "{icon}";
           tooltip-format = "Playing at {volume}%";
@@ -83,55 +98,28 @@
           };
           on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
         };
+
+        "hyprland/window" = {
+          max-length = 50;
+          separate-outputs = true;
+        };
       };
     };
-    # Appended after stylix's sheet, so these win on equal specificity and the
-    # @baseXX colours it defines are in scope.
     style = ''
       * {
         font-family: 'JetbrainsMono Nerd Font';
         font-size: 18px;
       }
 
-      /* One floating pill in the middle. The bar surface stays full width but
-         is painted transparent; the centre group is the only visible box, so
-         the pill hugs its contents and the wallpaper shows through beside it. */
-      window#waybar {
-        background: transparent;
-      }
-
-      .modules-center {
-        background: alpha(@base00, 0.85);
-        border: 1px solid alpha(@base04, 0.25);
-        border-radius: 18px;
-        margin-bottom: 8px;
-        padding: 1px 6px;
-      }
-
-      #workspaces,
-      #bluetooth,
-      #network,
+      #wireplumber,
       #pulseaudio,
-      #battery {
-        padding: 0 8px;
+      #sndio {
+        padding: 0 10px;
       }
-
-      /* Breathing room between the workspace cluster and the status cluster. */
-      #workspaces {
-        margin-right: 10px;
-        padding: 0 2px;
-      }
-
-      /* Stylix underlines the active workspace; the active icon already marks
-         it, and a flat underline fights the rounded pill. */
-      .modules-center #workspaces button,
-      .modules-center #workspaces button.active,
-      .modules-center #workspaces button.focused {
-        border-bottom: 3px solid transparent;
-      }
-
-      .modules-center #workspaces button {
-        padding: 0 6px;
+      #wireplumber.muted,
+      #pulseaudio.muted,
+      #sndio.muted {
+        padding: 0 10px;
       }
     '';
   };

@@ -2,7 +2,7 @@
   # styling
   stylix = {
     enable = true;
-    image = ../../wallpapers/breno-machado-in9-n0JwgZ0-unsplash.jpg;
+    image = ../../wallpapers/buzz-andersen-E4944K_4SvI-unsplash.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/bright.yaml";
     opacity = {
       terminal = 0.8;
