@@ -29,7 +29,7 @@ in {
   environment.systemPackages = [pkgs.restic];
 
   sops.secrets."restic-env" = {
-    sopsFile = ../../secrets/restic-backup.yaml;
+    sopsFile = ../../secrets/immich-backup.yaml;
     key = "env";
     owner = username;
   };
