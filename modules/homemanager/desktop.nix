@@ -14,6 +14,7 @@
     ./alacritty.nix
     ./hyprland.nix
     ./hyprpaper.nix
+    ./mail.nix
     ./mako.nix
     ./mangohud.nix
     ./waybar.nix

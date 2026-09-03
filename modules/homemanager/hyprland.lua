@@ -233,6 +233,7 @@ hl.bind(
 --------------------------------
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("bluetoothctl connect 81:AD:F0:4E:3A:35"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("alacritty -e btop"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("alacritty -e neomutt"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("alacritty --working-directory ~/dotfiles -e claude"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("zen-beta"))
