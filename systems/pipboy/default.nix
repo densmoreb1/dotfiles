@@ -4,6 +4,8 @@
     ../../modules/system/router.nix
     ../../modules/system/ddclient.nix
     ../../modules/system/homeassistant.nix
+    ../../modules/system/proxy.nix
+    ../../modules/system/crowdsec.nix
     ../../modules/system/default.nix
   ];
 

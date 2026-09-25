@@ -1,5 +1,5 @@
 {...}: {
-  services.homeassistant = {
+  services.home-assistant = {
     enable = true;
 
     # Leave configuration.yaml under Home Assistant's own control. The migrated

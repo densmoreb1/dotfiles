@@ -1,4 +1,6 @@
 {lib, ...}: let
+  maria = "192.168.0.216";
+  rose = "192.168.0.66";
   routerAddress = "192.168.0.1";
   subnet = "0";
 in {
@@ -16,13 +18,12 @@ in {
   };
 
   networking = {
-    # Turn the firewall on
     firewall.enable = lib.mkForce true;
 
-    # Turn off the automatic network manager so it can't wander in and override the fixed settings below.
+    # Turn off the automatic network manager so it can't override the fixed settings below
     networkmanager.enable = lib.mkForce false;
 
-    # Don't let every port grab an address on its own; each one is configured deliberately below.
+    # Leave this to pihole
     useDHCP = false;
 
     # The internet-facing port asks the ISP for an address, the same way any normal device would.
@@ -44,7 +45,7 @@ in {
         {
           sourcePort = 32400;
           proto = "tcp";
-          destination = "192.168.${subnet}.216:32400";
+          destination = "${maria}:32400";
         }
       ];
     };
@@ -99,8 +100,8 @@ in {
         domainNeeded = true;
 
         hosts = [
-          "192.168.${subnet}.66 rose.local"
-          "192.168.${subnet}.216 maria.local"
+          "${maria} maria.local"
+          "${rose} rose.local"
         ];
       };
 
@@ -111,8 +112,8 @@ in {
         end = "192.168.${subnet}.253";
         leaseTime = "24h";
         hosts = [
-          "60:cf:84:64:bd:59,192.168.${subnet}.216,maria"
-          "3c:7c:3f:21:ab:35,192.168.${subnet}.66,rose"
+          "60:cf:84:64:bd:59,${maria},maria"
+          "3c:7c:3f:21:ab:35,${rose},rose"
           "8c:90:2d:ea:e7:99,192.168.${subnet}.119,c200"
         ];
       };
@@ -165,7 +166,5 @@ in {
   virtualisation.docker.daemon.settings = {
     # A container publishing a port lands on the house network only. Docker sidesteps the firewall entirely, so this is the setting doing the protecting.
     ip = "${routerAddress}";
-    # Keep the real device's address visible to containers, so Pi-hole can report which device made each request instead of lumping them together.
-    userland-proxy = false;
   };
 }
