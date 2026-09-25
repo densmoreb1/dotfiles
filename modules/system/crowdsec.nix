@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.crowdsec = {
     enable = true;
 
@@ -20,7 +24,7 @@
       {
         source = "journalctl";
         journalctl_filter = ["_SYSTEMD_UNIT=caddy.service"];
-        labels.type = "caddy";
+        labels.type = "syslog";
       }
       {
         source = "journalctl";
@@ -35,6 +39,13 @@
     group = config.services.crowdsec.group;
     mode = "0750";
   };
+
+  # cscli shells out to `crowdsec` for some subcommands, and the child process
+  # doesn't get the -c flag the NixOS wrapper passes, so it looks for the
+  # upstream default path. Pointing that at the generated config is what makes
+  # `cscli explain` work. Ordered after the module's own 10- rules, which are
+  # what create /etc/crowdsec.
+  systemd.tmpfiles.settings."20-crowdsec-compat"."/etc/crowdsec/config.yaml"."L+".argument = "${(pkgs.formats.yaml {}).generate "crowdsec.yaml" config.services.crowdsec.settings.general}";
 
   sops.secrets."crowdsec_bouncer_key" = {
     sopsFile = ../../secrets/ddclient.yaml;
