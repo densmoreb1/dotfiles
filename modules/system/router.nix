@@ -59,33 +59,100 @@ in {
   # Records stats
   services.vnstat.enable = true;
 
-  # Hands out addresses to devices as they join the network.
-  services.dnsmasq = {
+  services.pihole-ftl = {
     enable = true;
 
-    # Don't point this machine at itself for name lookups -- it no longer answers them.
-    resolveLocalQueries = false;
+    # `lan` is trusted already, and these open their ports on every interface.
+    # Leaving them off is what keeps a resolver off the internet side.
+    openFirewallDNS = false;
+    openFirewallDHCP = false;
+    openFirewallWebserver = false;
+
+    queryLogDeleter.enable = true;
+
+    lists = [
+      {
+        url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/ultimate.txt";
+        description = "HaGeZi Ultimate";
+      }
+      {
+        url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/tif.txt";
+        description = "HaGeZi Threat Intelligence Feeds";
+      }
+      {
+        url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/popupads.txt";
+        description = "HaGeZi Pop-Up Ads";
+        enabled = false;
+      }
+      {
+        url = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/doh-vpn-proxy-bypass.txt";
+        description = "HaGeZi DoH/VPN/Proxy Bypass";
+        enabled = false;
+      }
+    ];
 
     settings = {
-      # Switch off this program's name-lookup half. Pi-hole does that job
-      port = 0;
+      dns = {
+        interface = "lan";
+        listeningMode = "BIND";
+        upstreams = ["127.0.0.1#5335"];
+        domainNeeded = true;
 
-      # Only offer addresses to the house side. Never answer a stranger on the internet.
-      interface = ["lan"];
-      # Start up gracefully even if the network port isn't ready yet at boot.
-      bind-dynamic = true;
+        hosts = [
+          "192.168.${subnet}.66 rose.local"
+          "192.168.${subnet}.216 maria.local"
+        ];
+      };
 
-      # Range of IP
-      dhcp-range = ["192.168.${subnet}.2,192.168.${subnet}.253,24h"];
+      dhcp = {
+        active = true;
+        router = routerAddress;
+        start = "192.168.${subnet}.2";
+        end = "192.168.${subnet}.253";
+        leaseTime = "24h";
+        hosts = [
+          "60:cf:84:64:bd:59,192.168.${subnet}.216,maria"
+          "3c:7c:3f:21:ab:35,192.168.${subnet}.66,rose"
+          "8c:90:2d:ea:e7:99,192.168.${subnet}.119,c200"
+        ];
+      };
 
-      # Reservations
-      dhcp-host = ["60:cf:84:64:bd:59,192.168.${subnet}.216,maria" "3c:7c:3f:21:ab:35,192.168.${subnet}.66,rose" "8c:90:2d:ea:e7:99,192.168.${subnet}.119,c200"];
+      ntp = {
+        ipv4.active = true;
+        ipv6.active = true;
+        # timesyncd owns this machine's clock; FTL only serves time to clients.
+        sync.active = false;
+      };
 
-      # Resolv.conf
-      dhcp-option = [
-        "option:router,${routerAddress}"
-        "option:dns-server,${routerAddress}"
-      ];
+      # Required for `lists` to be loaded through the local API on startup.
+      webserver.api.cli_pw = true;
+    };
+  };
+
+  services.pihole-web = {
+    enable = true;
+    ports = [8081];
+  };
+
+  # Recursive resolver sitting exactly where the old container sat: reachable
+  # only from this machine, and only by Pi-hole.
+  services.unbound = {
+    enable = true;
+
+    # Pi-hole answers for the house; don't let unbound claim resolv.conf.
+    resolveLocalQueries = false;
+
+    settings.server = {
+      interface = ["127.0.0.1"];
+      port = 5335;
+      access-control = ["127.0.0.1/32 allow"];
+      do-ip6 = false;
+
+      harden-glue = true;
+      harden-dnssec-stripped = true;
+      use-caps-for-id = false;
+      prefetch = true;
+      edns-buffer-size = 1232;
     };
   };
 
