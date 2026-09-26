@@ -115,8 +115,8 @@
       # pop up for key maps
       which-key.enable = true;
 
-      # auto-close brackets/quotes
-      mini-pairs.enable = true;
+      # add/change/delete surrounding pairs (ys, cs, ds)
+      mini-surround.enable = true;
 
       # gcc / gc to toggle comments
       mini-comment.enable = true;
