@@ -10,14 +10,11 @@
     extraComponents = [
       # Set up during onboarding; cheap, and other things reference them.
       "default_config"
-      "met"
-      "sun"
       "mobile_app"
       "systemmonitor"
 
       # Hardware actually on the network.
       "apple_tv"
-      "tplink"
       "onvif"
 
       # Camera streaming, paired with the ONVIF cameras above.
@@ -27,6 +24,7 @@
       # exposes entities back to Apple Home.
       "thread"
       "homekit"
+      "homekit_controller"
 
       # The Sonoff Zigbee dongle. Listing a serial component is what makes the
       # module grant the service the `dialout` group and char-ttyUSB access, so
