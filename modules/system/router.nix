@@ -104,11 +104,6 @@ in {
         listeningMode = "BIND";
         upstreams = ["127.0.0.1#5335"];
         domainNeeded = true;
-
-        hosts = [
-          "${maria} maria.local"
-          "${rose} rose.local"
-        ];
       };
 
       dhcp = {
