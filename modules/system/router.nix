@@ -29,6 +29,12 @@ in {
     # The internet-facing port asks the ISP for an address, the same way any normal device would.
     interfaces.wan.useDHCP = true;
 
+    # Turn off ipv6
+    dhcpcd.extraConfig = ''
+      interface wan
+        nodhcp6
+    '';
+
     interfaces.lan.ipv4.addresses = [
       {
         address = "${routerAddress}";
