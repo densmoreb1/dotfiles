@@ -127,9 +127,6 @@
         mockDevIcons = true;
       };
 
-      # add/change/delete surrounding pairs (ys, cs, ds)
-      mini-surround.enable = true;
-
       # better around/inside text objects
       mini-ai.enable = true;
 
